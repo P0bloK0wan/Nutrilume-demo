@@ -1,3 +1,4 @@
+import os,sys
 # Testes: perfil, avatar (logo), comunidade e injeção. Rodar com: python3 -m http.server 8765  (na pasta do projeto)
 import struct,zlib
 from playwright.sync_api import sync_playwright
@@ -12,7 +13,7 @@ with sync_playwright() as p:
   b=p.chromium.launch(); pg=b.new_context(viewport={'width':400,'height':860}).new_page()
   pg.on('pageerror',lambda e:errs.append(str(e)))
   pg.add_init_script("document.addEventListener('securitypolicyviolation',e=>{(window.__viol=window.__viol||[]).push(e.violatedDirective)})")
-  pg.goto('http://127.0.0.1:8765/index.html'); pg.wait_for_timeout(400)
+  pg.goto(os.getenv('BASE_URL','http://127.0.0.1:8765/demo.html')); pg.wait_for_timeout(400)
   # avatar padrão = logo
   ok('P1 avatar padrão é a logo',pg.evaluate("[...document.querySelectorAll('[data-av=pac] img')].every(i=>i.getAttribute('src')==='avatar-logo.png')"))
   ok('P2 ícone do app e manifest apontam para PNG',pg.evaluate("!!document.querySelector('link[rel=apple-touch-icon][href$=\".png\"]')"))
@@ -89,3 +90,5 @@ with sync_playwright() as p:
 f=[r for r in R if r[0]=='FAIL']
 for r in R: print(*r)
 print({'PASS':len(R)-len(f),'FAIL':len(f)})
+
+sys.exit(1 if f else 0)

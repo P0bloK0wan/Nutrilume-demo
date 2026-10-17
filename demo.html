@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#2B6130">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Nutrilume">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<title>Nutrilume · demonstração</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --lime:#CFF580;--bg:#F5F8EC;--card:#fff;--line:#DFE6E1;--ink:#14231A;--muted:#56635C;
+  --brand:#2B6130;--brand-soft:#E7F5BE;--brand-ink:#1E4723;
+  --warn:#E8732C;--warn-soft:#FDE7D6;--side:#17331C;--side-on:#264A2B;--water:#2F7FB8;
+  --ease:cubic-bezier(.22,.8,.3,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.45 Figtree,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;margin:0;letter-spacing:-.01em}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.tag{display:inline-block;font-size:12px;font-weight:700;background:var(--warn-soft);color:#5A2A08;border-radius:999px;padding:3px 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px 18px}
+.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.05em;color:var(--muted);margin:0 0 8px}
+.btn{min-height:44px;padding:0 16px;border-radius:14px;border:1.5px solid var(--line);background:#fff;color:var(--ink);font-weight:700}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn:active{transform:scale(.97)}
+
+/* topo e troca de visão */
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:calc(14px + env(safe-area-inset-top)) 20px 10px;max-width:1100px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque';font-weight:700;font-size:20px}
+.logo img{width:30px;height:30px;border-radius:9px}
+.seg{display:flex;background:#E8EDDC;border-radius:999px;padding:4px}
+.seg button{border:0;background:transparent;min-height:40px;padding:0 16px;border-radius:999px;font-weight:700;color:var(--muted)}
+.seg button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+main{max-width:1100px;margin:0 auto;padding:0 20px 40px}
+
+/* animação 1: entrada de tela */
+.enter{animation:enter .45s var(--ease) both}
+@keyframes enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.stagger>*{animation:enter .5s var(--ease) both}
+.stagger>*:nth-child(2){animation-delay:.07s}.stagger>*:nth-child(3){animation-delay:.14s}.stagger>*:nth-child(4){animation-delay:.21s}.stagger>*:nth-child(5){animation-delay:.28s}
+
+/* paciente */
+#paciente{max-width:430px;margin:0 auto;padding-bottom:96px}
+.hello{padding:8px 0 14px}
+.hello small{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.03em}
+.hello h1{font-size:30px;line-height:1.1;margin-top:2px}
+.stack{display:flex;flex-direction:column;gap:14px}
+.ring-card{background:var(--brand);color:#fff;border:0;display:flex;gap:16px;align-items:center}
+.ring{position:relative;width:96px;height:96px;flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:10;stroke-linecap:round}
+.ring .bg{stroke:rgba(255,255,255,.25)}
+.ring .fg{stroke:#fff;stroke-dasharray:264;stroke-dashoffset:264;transition:stroke-dashoffset .9s var(--ease)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 24px 'Bricolage Grotesque'}
+.meal{display:flex;align-items:center;gap:12px;min-height:52px;width:100%;border:0;background:transparent;text-align:left;padding:0;border-bottom:1px solid #EEF1EF}
+.meal:last-child{border-bottom:0}
+.dot{width:26px;height:26px;border-radius:50%;border:2px solid #C9D3CD;display:grid;place-items:center;flex:none;transition:background .25s,border-color .25s}
+.dot svg{width:14px;height:14px;stroke:#fff;stroke-width:3;fill:none;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .35s .1s}
+.meal.done .dot{background:var(--brand);border-color:var(--brand);animation:pop .35s var(--ease)}
+.meal.done .dot svg{stroke-dashoffset:0}
+.meal.done .nm{color:var(--muted);text-decoration:line-through}
+.meal .nm{flex:1;font-weight:600}.meal .hr{color:var(--muted);font-variant-numeric:tabular-nums}
+@keyframes pop{50%{transform:scale(1.25)}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.num{font:700 26px 'Bricolage Grotesque';font-variant-numeric:tabular-nums}
+.num small{font:600 14px Figtree;color:var(--muted)}
+/* animação 3: copo de água */
+.glass{position:relative;height:74px;border:2px solid var(--line);border-radius:6px 6px 16px 16px;overflow:hidden;background:#F5F8EC;margin:6px 0 10px}
+.glass i{position:absolute;left:0;right:0;bottom:0;height:0;background:var(--water);transition:height .8s var(--ease)}
+.glass i::before{content:"";position:absolute;left:-10%;right:-10%;top:-7px;height:14px;background:var(--water);border-radius:50%;animation:wave 3s ease-in-out infinite alternate}
+@keyframes wave{from{transform:translateX(-6%)}to{transform:translateX(6%)}}
+
+.swap-open{border:2px solid var(--brand)}
+.swaps{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s var(--ease)}
+.swaps>div{overflow:hidden}.swaps.open{grid-template-rows:1fr}
+.item{display:flex;justify-content:space-between;gap:10px;align-items:center;min-height:56px;width:100%;border:0;background:transparent;padding:0;text-align:left;border-bottom:1px solid #EEF1EF}
+.item b{display:block}.item span{color:var(--muted);font-size:14px}
+.chev{transition:transform .3s var(--ease)}.open .chev{transform:rotate(180deg)}
+.swap-list{background:#F2F9DF;border-radius:14px;padding:6px 14px;margin:0 0 8px}
+.swap-list button{display:flex;justify-content:space-between;width:100%;min-height:44px;border:0;background:transparent;border-bottom:1px solid #DCE8B6;font-weight:500;padding:0;text-align:left}
+.swap-list button:last-child{border-bottom:0}
+.swap-list em{font-style:normal;color:var(--muted);font-size:13.5px}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-weight:600}
+.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;background:#fff;color:var(--ink)}
+.entry{border-bottom:1px solid #EEF1EF;padding:10px 0}.entry:last-child{border:0}
+.entry small{color:var(--muted)}
+
+/* animação 2: gráfico que se desenha */
+.chart path.line{fill:none;stroke:var(--brand);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:420;stroke-dashoffset:420}
+.chart.go path.line{animation:draw 1.2s .15s var(--ease) forwards}
+.chart circle.pt{fill:#fff;stroke:var(--brand);stroke-width:2;opacity:0}
+.chart.go circle.pt{animation:fade .3s forwards}
+.chart.go circle.pt:nth-of-type(1){animation-delay:.3s}.chart.go circle.pt:nth-of-type(2){animation-delay:.7s}.chart.go circle.pt:nth-of-type(3){animation-delay:1.1s}
+@keyframes draw{to{stroke-dashoffset:0}}@keyframes fade{to{opacity:1}}
+.delta{background:var(--brand-soft);color:var(--brand-ink);font-weight:700;font-size:12.5px;border-radius:999px;padding:3px 10px}
+
+/* fotos antes e depois */
+.cmp{position:relative;aspect-ratio:3/4;border-radius:18px;overflow:hidden;background:linear-gradient(160deg,#DCE5E0,#CBD8D1);user-select:none;touch-action:pan-y}
+.cmp .ph{position:absolute;inset:0;background-size:cover;background-position:center;display:grid;place-items:center;color:var(--muted);font-weight:600;text-align:center;padding:20px}
+.cmp .after{clip-path:inset(0 0 0 50%)}
+.cmp .before{place-items:center start;text-align:left;padding-right:55%}
+.cmp .after{place-items:center end;text-align:right;padding-left:55%}
+.cmp .bar{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.15);pointer-events:none}
+.cmp .bar::after{content:"↔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.cmp .lab{position:absolute;top:10px;font-size:12px;font-weight:700;background:rgba(19,32,27,.7);color:#fff;border-radius:999px;padding:3px 10px}
+.cmp input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize}
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.pick label{display:flex;align-items:center;justify-content:center;min-height:44px;border:1.5px dashed var(--line);border-radius:14px;font-weight:700;cursor:pointer;background:#fff;text-align:center}
+.pick input{position:absolute;opacity:0;width:1px;height:1px}
+.pick label:focus-within{outline:3px solid var(--brand)}
+.note{font-size:13px;color:var(--muted)}
+
+
+/* silhueta genérica */
+.sil{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center}
+.sil svg{width:100%;height:auto;max-height:320px}
+.sil .body{fill:var(--brand-soft);stroke:var(--brand);stroke-width:2.5;stroke-linejoin:round}
+.sil .ghost{fill:none;stroke:#9DB5AB;stroke-width:2;stroke-dasharray:5 5}
+.sil .head{fill:var(--brand-soft);stroke:var(--brand);stroke-width:2.5}
+.sil dl{margin:0;display:grid;gap:10px}.sil dt{font-size:12.5px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.sil dd{margin:0;font:700 22px 'Bricolage Grotesque';font-variant-numeric:tabular-nums}
+.sil dd small{font:600 13px Figtree;color:var(--muted)}
+
+
+.badge{position:absolute;top:2px;right:calc(50% - 22px);min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--warn);color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;animation:pop .35s var(--ease)}
+.side .badge{top:50%;right:12px;margin-top:-8px}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 18px;border-radius:14px;font-weight:600;z-index:30;animation:enter .3s var(--ease);max-width:90vw}
+.thread{display:flex;flex-direction:column;gap:10px;min-height:240px}
+.bub{max-width:80%;padding:10px 14px;line-height:1.4;border-radius:18px;animation:enter .3s var(--ease) both;overflow-wrap:anywhere}
+.bub.me{align-self:flex-end;background:var(--brand);color:#fff;border-radius:18px 18px 4px 18px}
+.bub.other{align-self:flex-start;background:#fff;border:1px solid var(--line);border-radius:18px 18px 18px 4px}
+.when{align-self:center;font-size:12.5px;font-weight:700;color:var(--muted);background:#E8EDDC;border-radius:999px;padding:3px 12px}
+.sendrow{display:flex;gap:8px;margin-top:12px}
+.sendrow input{flex:1;min-width:0;border:1px solid var(--line);border-radius:999px;padding:0 16px;min-height:44px;font:inherit;background:#fff}
+.sendrow button{width:44px;height:44px;border-radius:50%;border:0;background:var(--brand);color:#fff;font-weight:700;font-size:18px}
+.ed{display:grid;gap:10px;border:1px solid var(--line);border-radius:16px;padding:12px;background:#FBFCFB}
+.ed .row{display:grid;grid-template-columns:1.2fr 1fr auto;gap:8px;align-items:center}
+.ed input{min-height:40px;padding:0 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;width:100%}
+.ed .x{width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:#fff;font-weight:700;color:var(--warn)}
+.ed small{color:var(--muted);font-size:12.5px}
+.overlay{position:fixed;inset:0;background:rgba(19,32,27,.55);z-index:40;display:grid;place-items:center;padding:16px;animation:fade2 .25s both}
+@keyframes fade2{from{opacity:0}to{opacity:1}}
+.modal{background:#fff;border-radius:24px;max-width:430px;width:100%;padding:22px;max-height:92vh;overflow:auto;animation:enter .4s var(--ease) both}
+.ck{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #EEF1EF;cursor:pointer}
+.ck input{width:22px;height:22px;margin-top:2px;accent-color:var(--brand);flex:none}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.invite{display:grid;gap:10px}
+.linkbox{background:#F2F9DF;border-radius:12px;padding:10px 12px;font-size:13px;overflow-wrap:anywhere}
+
+
+.poll button.opt{position:relative;display:flex;justify-content:space-between;align-items:center;width:100%;min-height:48px;border:1.5px solid var(--line);border-radius:14px;background:#fff;padding:0 14px;margin-bottom:8px;overflow:hidden;text-align:left;font-weight:600}
+.poll .fill{position:absolute;inset:0 auto 0 0;width:0;background:var(--brand-soft);transition:width .8s var(--ease);z-index:0}
+.poll .opt span{position:relative;z-index:1}
+.days{display:flex;gap:6px}.days button{flex:1;min-height:40px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-weight:700;color:var(--muted)}
+.days button[aria-pressed=true]{background:var(--brand);border-color:var(--brand);color:#fff;animation:pop .3s var(--ease)}
+.post{border-bottom:1px solid #EEF1EF;padding:10px 0}.post:last-child{border:0}
+.post small{color:var(--muted)}.post .by{font-weight:700}
+.link{background:transparent;border:0;color:var(--muted);text-decoration:underline;padding:6px 0;min-height:36px;font-weight:600}
+.shop label{display:flex;gap:12px;align-items:center;min-height:48px;border-bottom:1px solid #EEF1EF;cursor:pointer}
+.shop input[type=checkbox]{width:22px;height:22px;accent-color:var(--brand);flex:none}
+.shop input:checked+span{text-decoration:line-through;color:var(--muted)}
+.rec button.h{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:52px;border:0;background:transparent;font:700 16px Figtree;text-align:left;padding:0}
+.rec .body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s var(--ease)}.rec .body>div{overflow:hidden}.rec.open .body{grid-template-rows:1fr}
+.rec ol,.rec ul{margin:6px 0 10px;padding-left:20px}
+.btn.wa{background:#fff;border-color:#25A244;color:#14231A;display:inline-flex;align-items:center;gap:8px;text-decoration:none;justify-content:center}
+.btn.wa svg{width:20px;height:20px;fill:#25A244}
+a.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.form label{display:grid;gap:4px;margin-bottom:10px;font-weight:600;font-size:14px}
+.form select,.form input,.form textarea{width:100%;min-height:44px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;background:#fff;color:var(--ink)}
+.alertbox{background:var(--warn-soft);color:#5A2A08;border-radius:14px;padding:10px 14px;font-size:14px}
+
+
+/* ===== logo, planta, perfil, comunidade ===== */
+.av{display:inline-grid;place-items:center;border-radius:50%;overflow:hidden;background:var(--lime);flex:none;width:44px;height:44px}
+.av img{width:100%;height:100%;object-fit:cover;display:block}
+.av.lg{width:96px;height:96px}.av.sm{width:34px;height:34px}
+.pbar{display:flex;justify-content:flex-end;gap:10px;padding:2px 0 0}
+.iconBtn{position:relative;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;color:var(--ink);padding:0;overflow:visible}
+.iconBtn svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.iconBtn .badge{top:-3px;right:-3px}
+.avBtn{border:2px solid #fff;box-shadow:0 0 0 1px var(--line);border-radius:50%;padding:0;background:transparent;width:48px;height:48px}
+.avBtn .av{width:44px;height:44px}
+.hero{background-color:var(--brand);background-image:repeating-linear-gradient(115deg,rgba(255,255,255,.07) 0 2px,transparent 2px 24px);color:#fff;border-radius:40px 8px 40px 8px;padding:18px 16px 16px 24px;display:flex;gap:8px;align-items:stretch;border:0}
+.hero .eyebrow{color:rgba(255,255,255,.88);margin:0 0 6px}
+.hero h2{font-size:24px;line-height:1.1;margin:0}
+.hero p{margin:6px 0 0;font-size:14.5px;opacity:.93}
+.hero .txt{flex:1;min-width:0;display:flex;flex-direction:column}
+.hero .btn{margin-top:auto;background:#fff;border-color:#fff;color:var(--brand);width:100%}
+.plantBox{width:112px;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;transform-origin:50% 100%}
+.plantBox.grow{animation:growIn .75s var(--ease)}
+@keyframes growIn{0%{transform:scale(.82);opacity:.6}60%{transform:scale(1.06)}100%{transform:none;opacity:1}}
+.pill{font-size:12.5px;font-weight:700;background:var(--warn-soft);color:#5A2A08;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.card .ring{width:56px;height:56px}.card .ring svg{width:56px;height:56px}
+.card .ring .bg{stroke:var(--brand-soft)}.card .ring .fg{stroke:var(--brand)}
+.card .ring b{color:var(--ink);font-size:15px}
+.mealsHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.mealsHead h3{margin:0}.mealsHead small{display:block;color:var(--muted)}
+.leafcard{border-radius:8px 28px 8px 28px}
+.room{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:20px;padding:12px 16px;min-height:72px}
+.room .ic{width:44px;height:44px;border-radius:14px;background:var(--brand-soft);display:grid;place-items:center;flex:none}
+.room .ic svg{width:26px;height:26px;stroke:var(--brand);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.room small{display:block;color:var(--muted)}
+.rules{background:var(--warn-soft);color:#5A2A08;border-radius:14px;padding:8px 12px;font-size:13px;line-height:1.35}
+.hostbar{display:flex;align-items:center;gap:10px;border-radius:28px 8px 28px 8px;background-color:var(--brand);background-image:repeating-linear-gradient(115deg,rgba(255,255,255,.07) 0 2px,transparent 2px 24px);color:#fff;padding:10px 16px 10px 18px}
+.cpost{background:#fff;border:1px solid var(--line);border-radius:20px;padding:12px 16px}
+.cpost.host{background:#F2F9DF;border-color:#CDE58F}
+.cpost .top{display:flex;align-items:center;gap:8px}
+.cpost p{margin:6px 0 4px;line-height:1.4;overflow-wrap:anywhere}
+.cpost .acts{display:flex;gap:14px;flex-wrap:wrap}
+.cpost .acts button{background:transparent;border:0;color:var(--muted);text-decoration:underline;min-height:36px;padding:0;font-weight:500}
+.cpost .acts button.like{text-decoration:none;font-weight:700;color:var(--brand)}
+.badge2{background:var(--brand);color:#fff;font-size:11.5px;font-weight:700;border-radius:999px;padding:1px 8px}
+.backbtn{background:transparent;border:0;color:var(--brand);font-weight:700;min-height:44px;padding:0;text-align:left}
+.sideProfile{display:flex!important;align-items:center;gap:10px;margin-top:10px;border-top:1px solid #264A2B!important;padding-top:10px!important;border-radius:0!important}
+.sideLogo{display:flex;align-items:center;gap:10px;margin:2px 6px 14px}.sideLogo img{width:34px;height:34px;border-radius:10px}
+.sideLogo b{font:700 18px 'Bricolage Grotesque'}
+.pf{display:grid;gap:12px}
+.pf label{display:grid;gap:4px;font-weight:600;font-size:14px}
+.pf input[type=text],.pf textarea,.pf select{width:100%;min-height:44px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;background:#fff;color:var(--ink)}
+.pf .count{font-size:12.5px;color:var(--muted);font-weight:500;justify-self:end}
+.pf .row2{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.pf .avrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.avpick{display:flex;gap:8px}.avpick button{border:2px solid var(--line);background:#fff;border-radius:50%;padding:0;width:52px;height:52px;display:grid;place-items:center}
+.avpick button[aria-pressed=true]{border-color:var(--brand);box-shadow:0 0 0 2px var(--brand-soft)}
+.row{display:flex;align-items:center}
+.fld{display:block;margin:0 0 12px}.fld>span{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.fld input,.fld textarea{width:100%;box-sizing:border-box;min-height:46px;border:1px solid var(--line);border-radius:14px;padding:10px 14px;font:500 16px Figtree,system-ui,sans-serif;color:var(--ink);background:#fff}
+.fld.inv input{border:0;font-weight:700}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.chk{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.35}
+.chk input{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:var(--brand)}
+.apel{margin:14px 0;border-radius:36px 8px 36px 8px}.apel p{font-size:13px}
+.profHero{align-items:center}.profHero .av.lg{border:3px solid rgba(255,255,255,.6)}
+.apelHero{align-items:center}.apelHero .av.lg{width:64px;height:64px}
+.salaBtn{display:flex;align-items:center;gap:12px;text-align:left;width:100%;font:inherit;color:inherit;cursor:pointer;min-height:64px}
+.salaIc{width:44px;height:44px;border-radius:14px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-weight:700;font-size:18px;flex:none}
+.grow1{flex:1;min-width:0}.entrar{color:var(--brand);font-weight:700;font-size:14px}
+.aviso{background:var(--warn-soft);color:#5A2A08;border-radius:14px;padding:8px 12px;font-size:13px;line-height:1.35}
+.back{align-self:flex-start;min-height:44px}
+.nutPost{background:var(--brand-soft)}
+.salaBtn:focus-visible,.chk input:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.fbRes{display:flex;flex-direction:column;gap:6px;margin:10px 0}.fbRes button{display:flex;justify-content:space-between;gap:10px;text-align:left;font:inherit;color:inherit;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;min-height:44px;cursor:pointer}.fbRes button[aria-pressed=true]{border-color:var(--brand);background:var(--brand-soft)}.fbRes small{color:var(--muted)}
+.macros{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.macros div{background:var(--brand-soft);border-radius:14px;padding:8px;text-align:center}.macros b{display:block;font-size:18px}.macros small{color:var(--muted);font-size:12px}
+.empty{display:flex;gap:14px;align-items:center;color:var(--muted)}
+
+nav.tabs{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(430px,100%);display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid var(--line);padding:8px 8px calc(10px + env(safe-area-inset-bottom));z-index:5}
+nav.tabs button{border:0;background:transparent;min-height:48px;color:var(--muted);font-size:11.5px;font-weight:600;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;position:relative}
+nav.tabs button svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s var(--ease)}
+nav.tabs button[aria-selected=true]{color:var(--brand);font-weight:700}
+nav.tabs button[aria-selected=true] svg{transform:translateY(-2px) scale(1.08)}
+nav.tabs button[aria-selected=true]::after{content:"";position:absolute;top:-9px;width:28px;height:3px;border-radius:2px;background:var(--brand);animation:enter .3s var(--ease)}
+
+/* nutricionista */
+#nutri{display:grid;grid-template-columns:230px 1fr;gap:18px;align-items:start}
+.side{background:var(--side);color:#fff;border-radius:22px;padding:16px;position:sticky;top:12px}
+.side h3{font-size:18px;margin:2px 6px 14px}
+.side button{position:relative;display:block;width:100%;text-align:left;border:0;background:transparent;color:#C9D6CF;min-height:44px;padding:0 12px;border-radius:12px;font-weight:600}
+.side button[aria-current=true]{background:var(--side-on);color:#fff}
+.plist button{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;min-height:56px;border:0;background:transparent;border-bottom:1px solid #EEF1EF;text-align:left;padding:0}
+.plist button:hover{background:#F7FAF8}
+.grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+.status{font-size:12.5px;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--brand-soft);color:var(--brand-ink)}
+.status.warn{background:var(--warn-soft);color:#5A2A08}
+.consent{display:flex;gap:10px;align-items:flex-start;background:#F2F9DF;border-radius:14px;padding:10px 14px;font-size:13.5px}
+
+@media (max-width:820px){
+  #nutri{grid-template-columns:1fr}.side{position:static;display:flex;gap:6px;overflow:auto;padding:8px}.side h3{display:none}.side button{white-space:nowrap;width:auto}
+  .grid2{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+  .chart path.line{stroke-dashoffset:0}.chart circle.pt{opacity:1}
+}
+.top{flex-wrap:wrap}.top>*{min-width:0}.two{grid-template-columns:repeat(2,minmax(0,1fr))}input,textarea,select{max-width:100%;box-sizing:border-box}.ed .row input{min-width:0}.card,.grid2>*{min-width:0}img{max-width:100%}
+@media(max-width:430px){.top{padding-inline:14px;gap:8px}.seg button{padding-inline:12px}.logo{font-size:18px}.hero .txt{min-width:0}.hero{gap:8px}.hero .plantBox{flex-shrink:0}}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="logo"><img src="icon-192.png" alt="" width="34" height="34" style="border-radius:10px">Nutrilume</div>
+  <div class="seg" role="group" aria-label="Escolher visão">
+    <button type="button" id="v-pac" aria-pressed="true">Paciente</button>
+    <button type="button" id="v-nut" aria-pressed="false">Nutricionista</button>
+  </div>
+</header>
+
+<main>
+<!-- ============ PACIENTE ============ -->
+<section id="paciente" aria-label="Área do paciente">
+  <div class="pbar">
+    <button type="button" class="iconBtn" id="btnMsg" aria-label="Mensagens com a Ana"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="badge" id="bgPac" hidden>1</span></button>
+    <button type="button" class="avBtn" id="btnPerfil" aria-label="Meu perfil"><span class="av" data-av="pac"></span></button>
+  </div>
+
+  <div data-tab="hoje" class="enter">
+    <div class="hello"><small id="data"></small><h1>Boa tarde, Marina</h1></div>
+    <div class="stack stagger">
+      <div class="card hero" id="heroHoje" aria-label="Próxima refeição e planta da semana">
+        <div class="txt"><div class="eyebrow" id="heroEy">PRÓXIMA REFEIÇÃO</div><h2 id="heroMeal"></h2><p id="heroSub"></p><button type="button" class="btn" id="heroDone" style="margin-top:12px">Marcar como feita</button></div>
+        <div class="plantBox" id="plantHoje"></div>
+      </div>
+      <div class="card">
+        <div class="mealsHead"><div><h3 class="eyebrow" style="margin:0">REFEIÇÕES DE HOJE</h3><small id="ringMsg">Vamos começar</small></div>
+        <div class="ring" aria-hidden="true"><svg viewBox="0 0 96 96"><circle class="bg" cx="48" cy="48" r="42"/><circle class="fg" id="ring" cx="48" cy="48" r="42"/></svg><b id="ringTxt">0/4</b></div></div>
+        <div id="meals"></div>
+      </div>
+      <div class="two">
+        <div class="card"><h3 class="eyebrow">ÁGUA</h3><div class="num"><span id="aguaN">0,0</span> <small>de 2,0 L</small></div><div class="glass" aria-hidden="true"><i id="glass"></i></div><button class="btn" id="agua" style="width:100%">+ 250 ml</button></div>
+        <div class="card"><h3 class="eyebrow">META DA SEMANA</h3><p style="margin:0 0 10px;font-weight:600" id="metaTxt"></p><div id="metaBars" style="display:flex;gap:5px"></div><p class="note" style="margin:8px 0 8px" id="metaNote"></p><button class="btn" id="metaBtn" style="width:100%;min-height:40px">Marquei hoje</button></div>
+      </div>
+      <div class="card" id="fichaCard"></div>
+      <div class="card" id="lemCard"></div>
+      <span class="tag" style="align-self:flex-start">Dados de exemplo</span>
+    </div>
+  </div>
+
+  <div data-tab="plano" hidden>
+    <div class="hello"><small id="planUp">Atualizado em 9 de outubro por Ana Ribeiro</small><h1>Plano alimentar</h1></div>
+    <div class="chips" id="planMode" role="group" aria-label="Seção" style="margin-bottom:14px"></div>
+    <div id="planView"><div class="chips" role="group" aria-label="Refeição" id="planChips" style="margin-bottom:14px"></div><div class="stack" id="planBody"></div></div>
+    <div id="shopView" hidden class="stack"></div>
+    <div id="recView" hidden class="stack"></div>
+  </div>
+
+  <div data-tab="diario" hidden>
+    <div class="hello"><small>Registro para a nutricionista</small><h1>Diário</h1></div>
+    <div class="stack">
+      <div class="card">
+        <label for="diaTxt" class="eyebrow" style="display:block">O QUE VOCÊ COMEU?</label>
+        <textarea id="diaTxt" rows="3" placeholder="Ex.: Almocei arroz, feijão e salada."></textarea>
+        <div class="chips" style="margin:10px 0" id="humor" role="group" aria-label="Como se sentiu"></div>
+        <button class="btn primary" id="diaSave" style="width:100%">Salvar no diário</button>
+      </div>
+      <div class="card"><h3 class="eyebrow">ÚLTIMOS REGISTROS</h3><div id="diaList"></div></div>
+    </div>
+  </div>
+
+  <div data-tab="evolucao" hidden>
+    <div class="hello"><small>3 consultas · desde 28 de agosto</small><h1>Sua evolução</h1></div>
+    <div class="stack">
+      <div class="card hero" id="heroEvo" aria-label="Sua constância"></div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center"><h3 class="eyebrow" style="margin:0">CINTURA</h3><span class="delta">−3 cm</span></div>
+        <div class="num" style="margin:6px 0">85 <small>cm</small></div>
+        <svg class="chart" id="chart" viewBox="0 0 320 90" width="100%" height="90" role="img" aria-label="Cintura de 88 para 85 centímetros em três consultas">
+          <line x1="0" y1="78" x2="320" y2="78" stroke="#E8EDDC"/>
+          <path class="line" d="M14 16 L160 40 L306 64"/>
+          <circle class="pt" cx="14" cy="16" r="5"/><circle class="pt" cx="160" cy="40" r="5"/><circle class="pt" cx="306" cy="64" r="6" style="fill:#2B6130"/>
+        </svg>
+        <div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)"><span>28 ago · 88</span><span>21 set · 86,5</span><span>16 out · 85</span></div>
+      </div>
+      <div class="two">
+        <div class="card"><h3 class="eyebrow">PESO</h3><div class="num">76,9 <small>kg</small></div><div class="note">−1,5 kg desde o início</div></div>
+        <div class="card"><h3 class="eyebrow">QUADRIL</h3><div class="num">104 <small>cm</small></div><div class="note">−2 cm desde o início</div></div>
+      </div>
+      <div class="card" id="silPac"></div>
+      <div class="card" id="fotoPac"></div>
+    </div>
+  </div>
+
+  <div data-tab="msg" hidden>
+    <div class="hello"><small>Responde de seg a sex, 8h às 18h</small><h1>Ana Ribeiro</h1></div>
+    <div class="chips" id="msgMode" role="group" aria-label="Seção" style="margin-bottom:14px"></div>
+    <div id="chatView"><div class="card"><div class="thread" id="msgPac" aria-live="polite"></div>
+      <div class="chips" style="margin-top:12px" id="msgChips"></div>
+      <form class="sendrow" id="formPac"><input id="inPac" type="text" maxlength="500" placeholder="Escreva para a Ana" aria-label="Mensagem"><button aria-label="Enviar">→</button></form>
+      <div id="waPac" style="margin-top:12px"></div></div></div>
+    <div id="grpView" hidden class="stack"></div>
+  </div>
+
+  <div data-tab="com" hidden>
+    <div class="hello"><small>Pacientes de vários nutricionistas</small><h1>Comunidade</h1></div>
+    <div class="stack" id="comView"></div>
+  </div>
+
+  <div data-tab="perfil" hidden>
+    <div class="hello"><small>Sua foto só aparece para a Ana</small><h1>Meu perfil</h1></div>
+    <div class="stack" id="perfilPac"></div>
+  </div>
+
+  <nav class="tabs" role="tablist" aria-label="Navegação do paciente">
+    <button role="tab" data-go="hoje" aria-selected="true"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Hoje</button>
+    <button role="tab" data-go="plano" aria-selected="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 6V3M9 3h6"/></svg>Plano</button>
+    <button role="tab" data-go="diario" aria-selected="false"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>Diário</button>
+    <button role="tab" data-go="evolucao" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l4-5 3 3 5-6"/></svg>Evolução</button>
+    <button role="tab" data-go="com" aria-selected="false"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.4"/><path d="M3 20c0-3.5 3-6 6-6s6 2.5 6 6M16 14.5c3 0 5 2 5 5"/></svg>Comunidade</button>
+  </nav>
+</section>
+
+<!-- ============ NUTRICIONISTA ============ -->
+<section id="nutri" aria-label="Área do nutricionista" hidden>
+  <aside class="side">
+    <div class="sideLogo"><img src="icon-192.png" alt=""><b>Nutrilume</b></div>
+    <button aria-current="true" data-n="pac">Pacientes</button>
+    <button data-n="plano">Montar plano</button>
+    <button data-n="msg">Mensagens<span class="badge" id="bgNut" hidden>1</span></button>
+    <button data-n="grp">Grupo<span class="badge" id="bgGrp" hidden>1</span></button>
+    <button data-n="com">Comunidade<span class="badge" id="bgCom" hidden>1</span></button>
+    <button data-n="agenda">Agenda</button>
+    <button data-n="fin">Financeiro</button>
+    <button data-n="perfil" class="sideProfile"><span class="av sm" data-av="nut"></span>Meu perfil</button>
+  </aside>
+  <div>
+    <div data-n-view="pac" class="stack stagger">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><h1 style="font-size:28px">Pacientes</h1><span class="tag">Dados de exemplo</span></div>
+      <div class="card" id="convCard"></div>
+      <div class="grid2">
+        <div class="card plist">
+          <label for="busca" class="eyebrow" style="display:block">BUSCAR</label>
+          <input type="text" id="busca" placeholder="Nome do paciente" style="margin-bottom:8px">
+          <div id="lista"></div>
+        </div>
+        <div class="card" id="resumo"></div>
+      </div>
+      <div class="card" id="fichaNut"></div>
+      <div class="card" id="fotoNut"></div>
+    </div>
+    <div data-n-view="plano" hidden class="stack stagger">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><h1 style="font-size:28px">Montar plano · Marina Costa</h1><span class="tag">Rascunho até publicar</span></div>
+      <div class="card" id="planEd"></div>
+      <div class="card" id="foodBank"></div>
+      <div class="card" id="metaEd"></div>
+    </div>
+    <div data-n-view="msg" hidden class="stack stagger">
+      <h1 style="font-size:28px">Mensagens · Marina Costa</h1>
+      <div class="card"><div class="thread" id="msgNut" aria-live="polite"></div>
+      <div id="waNut" class="stack" style="margin-bottom:12px"></div>
+      <form class="sendrow" id="formNut"><input id="inNut" type="text" placeholder="Responder para a Marina" aria-label="Resposta"><button aria-label="Enviar">→</button></form></div>
+    </div>
+    <div data-n-view="grp" hidden class="stack stagger">
+      <h1 style="font-size:28px">Grupo do consultório</h1>
+      <div id="grpNut" class="stack"></div>
+    </div>
+    <div data-n-view="com" hidden class="stack stagger">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><h1 style="font-size:28px">Comunidade · salas que você modera</h1><span class="tag">Dados de exemplo</span></div>
+      <div id="comNut" class="stack"></div>
+    </div>
+    <div data-n-view="perfil" hidden class="stack stagger">
+      <h1 style="font-size:28px">Meu perfil</h1>
+      <div id="perfilNut" class="stack"></div>
+    </div>
+    <div data-n-view="agenda" hidden class="stack stagger">
+      <h1 style="font-size:28px">Agenda · hoje</h1>
+      <div class="card"><div class="plist" id="agendaL"></div></div>
+    </div>
+    <div data-n-view="fin" hidden class="stack stagger">
+      <h1 style="font-size:28px">Financeiro · outubro</h1>
+      <div class="two"><div class="card"><h3 class="eyebrow">RECEBIDO</h3><div class="num" data-count="4850" data-pre="R$ ">0</div></div><div class="card"><h3 class="eyebrow">A RECEBER</h3><div class="num" data-count="1200" data-pre="R$ ">0</div></div></div>
+      <div class="card"><h3 class="eyebrow">CONSULTAS NO MÊS</h3><div class="num" data-count="27">0</div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script src="app.js" defer></script>
+</body>
+</html>

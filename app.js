@@ -2,6 +2,8 @@
 const esc=t=>String(t).replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c]));
 
 const meta={t:'Legumes no almoço',d:4,of:5};
+const metaDates=new Set();
+const todayKey=()=>new Date().toLocaleDateString('en-CA');
 const LEAF='M0 0C8-16 30-16 36 0C30 16 8 16 0 0Z';
 function plantStage(d,of){if(d<=0)return 0;if(d>=of)return 4;const q=d/of;return q<.4?1:q<.7?2:3}
 function plantSVG(stage,dark,w){
@@ -177,6 +179,7 @@ function renderNut(){
   $('#lista').innerHTML=pacientes.map((p,i)=>({p,i})).filter(o=>o.p.n.toLowerCase().includes(q)).map(({p,i})=>`<button data-i="${i}" ${i===sel?'style="background:#F2F8E2"':''}><span><b>${esc(p.n)}</b><br><small style="color:var(--muted)">${esc(p.obj)}</small></span><span class="status ${p.w?'warn':''}">${esc(p.s)}</span></button>`).join('')||'<div class="empty"><svg width="56" height="40" viewBox="0 0 60 40" aria-hidden="true"><g transform="translate(8 24) rotate(-30)"><path d="M0 0C6-12 22-12 26 0C22 12 6 12 0 0Z" fill="#7DB35A"/></g><g transform="translate(30 26) rotate(-150) scale(.8)"><path d="M0 0C6-12 22-12 26 0C22 12 6 12 0 0Z" fill="#2B6130"/></g></svg><span>Ninguém encontrado.</span></div>';
   $$('#lista button').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;renderNut()});
   const p=pacientes[sel];
+  $('[data-n-view=plano] h1').textContent='Montar plano · '+p.n;
   $('#resumo').innerHTML=`<h2 style="font-size:22px">${esc(p.n)}</h2><p class="note" style="margin:2px 0 12px">${esc(p.obj)}</p>
    <div class="two" style="margin-bottom:12px"><div><div class="eyebrow">PESO</div><div class="num" style="font-size:22px">${esc(p.peso)}</div></div><div><div class="eyebrow">CINTURA</div><div class="num" style="font-size:22px">${esc(p.cint)}</div></div></div>
    <p class="note" style="margin:0 0 4px">Última consulta: ${esc(p.ult)} · Próxima: ${esc(p.prox)}</p>
@@ -219,24 +222,26 @@ $$('#msgChips .chip').forEach(b=>b.onclick=()=>{$('#inPac').value=b.textContent=
 renderMsgs();
 
 /* ---------- montagem do plano (nutricionista) ---------- */
-let draft=null, edMeal='Almoço';
+let draft=null, edMeal='Almoço', draftPatient=-1;
+const seedPlan=JSON.parse(JSON.stringify(plano)), patientPlans=new Map(), drafts=new Map();
 const swapsToText=a=>a.map(x=>{const [n,p]=x.split('|');return p?`${n} (${p})`:n}).join('; ');
 const textToSwaps=t=>t.split(';').map(x=>x.trim()).filter(Boolean).map(x=>{const m=x.match(/^(.*?)\s*\((.*)\)$/);return m?`${m[1]}|${m[2]}`:`${x}|1 porção`});
 function renderPlanEd(){
-  if(!draft)draft=JSON.parse(JSON.stringify(plano));
+  if(draftPatient!==sel){if(draft&&draftPatient>=0)drafts.set(draftPatient,draft);draftPatient=sel;draft=drafts.get(sel)||null;}
+  if(!draft)draft=JSON.parse(JSON.stringify(sel===0?plano:(patientPlans.get(sel)||seedPlan)));
   const host=$('#planEd');
   host.innerHTML=`<div class="chips" id="edChips" role="group" aria-label="Refeição" style="margin-bottom:12px">${Object.keys(draft).map(k=>`<button class="chip" aria-pressed="${k===edMeal}" data-k="${k}">${k}</button>`).join('')}</div>
   <div class="stack">${draft[edMeal].map((it,i)=>`<div class="ed"><div class="row"><input aria-label="Alimento" value="${esc(it[0])}" data-i="${i}" data-f="0"><input aria-label="Porção" value="${esc(it[1])}" data-i="${i}" data-f="1"><button type="button" class="x" data-del="${i}" aria-label="Remover ${esc(it[0])}">✕</button></div>
   <label><small>Trocas equivalentes (separe por ponto e vírgula)</small><input aria-label="Trocas" value="${esc(swapsToText(it[2]))}" data-i="${i}" data-f="s" placeholder="Batata (1 unidade); Macarrão (3 colheres)"></label></div>`).join('')}
   <button type="button" class="btn" id="edAdd">+ Adicionar alimento</button></div>
-  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px"><button type="button" class="btn primary" id="edPub">Publicar para a Marina</button><button type="button" class="btn" id="edReset">Descartar mudanças</button></div>
-  <p class="note" style="margin:10px 0 0">A Marina só vê as mudanças depois que você publicar.</p>`;
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px"><button type="button" class="btn primary" id="edPub">Publicar para ${esc(pacientes[sel].n)}</button><button type="button" class="btn" id="edReset">Descartar mudanças</button></div>
+  <p class="note" style="margin:10px 0 0">O paciente só vê as mudanças depois que você publicar.</p>`;
   $$('#edChips .chip',host).forEach(b=>b.onclick=()=>{edMeal=b.dataset.k;renderPlanEd()});
-  $$('.ed input',host).forEach(inp=>inp.oninput=()=>{const it=draft[edMeal][+inp.dataset.i];if(inp.dataset.f==='s')it[2]=textToSwaps(inp.value);else{it[+inp.dataset.f]=inp.value;if(it[3]&&+inp.dataset.f===1){delete it[3];renderBank()}}});
+  $$('.ed input',host).forEach(inp=>inp.oninput=()=>{const it=draft[edMeal][+inp.dataset.i];if(inp.dataset.f==='s')it[2]=textToSwaps(inp.value);else{it[+inp.dataset.f]=inp.value;if(it[3]&&[0,1].includes(+inp.dataset.f)){delete it[3];renderBank()}}});
   $$('[data-del]',host).forEach(b=>b.onclick=()=>{draft[edMeal].splice(+b.dataset.del,1);renderPlanEd()});
   $('#edAdd',host).onclick=()=>{draft[edMeal].push(['Novo alimento','1 porção',[]]);renderPlanEd();const ins=$$('.ed .row input:first-child',host);ins[ins.length-1].focus();ins[ins.length-1].select()};
-  $('#edPub',host).onclick=()=>{plano=JSON.parse(JSON.stringify(draft));openItem=0;drawPlano();$('#planUp').textContent='Atualizado hoje por Ana Ribeiro';toast('Plano publicado. A Marina já vê as mudanças.')};
-  $('#edReset',host).onclick=()=>{draft=JSON.parse(JSON.stringify(plano));renderPlanEd();toast('Mudanças descartadas.')};
+  $('#edPub',host).onclick=()=>{if(sel===0)plano=JSON.parse(JSON.stringify(draft));else patientPlans.set(sel,JSON.parse(JSON.stringify(draft)));openItem=0;drawPlano();$('#planUp').textContent='Atualizado hoje por Ana Ribeiro';toast('Plano publicado para '+pacientes[sel].n+'.')};
+  $('#edReset',host).onclick=()=>{draft=JSON.parse(JSON.stringify(sel===0?plano:(patientPlans.get(sel)||seedPlan)));renderPlanEd();toast('Mudanças descartadas.')};
   renderBank();
 }
 
@@ -460,15 +465,15 @@ function renderMeta(){
   if(!$('#metaTxt'))return;
   $('#metaTxt').textContent=meta.t;
   $('#metaBars').innerHTML=Array.from({length:meta.of},(_,i)=>`<span style="flex:1;height:8px;border-radius:4px;background:${i<meta.d?'#2B6130':'#E8EDDC'};transition:background .3s"></span>`).join('');
-  $('#metaNote').textContent=`${meta.d} de ${meta.of} dias`; $('#metaBtn').disabled=meta.d>=meta.of; renderPlants(false);
+  $('#metaNote').textContent=`${meta.d} de ${meta.of} dias`; $('#metaBtn').disabled=meta.d>=meta.of||metaDates.has(todayKey()); renderPlants(false);
 }
-$('#metaBtn').onclick=()=>{if(meta.d<meta.of){meta.d++;renderMeta();renderPlants(true)}};
+$('#metaBtn').onclick=()=>{if(meta.d<meta.of&&!metaDates.has(todayKey())){metaDates.add(todayKey());meta.d++;renderMeta();renderPlants(true)}};
 renderMeta();
 function renderMetaEd(){
   const h=$('#metaEd'); if(!h)return;
   h.innerHTML=`<h3 class="eyebrow">META DA SEMANA DA MARINA</h3><form class="sendrow" id="metaForm" style="flex-wrap:wrap"><input id="metaIn" maxlength="60" value="${esc(meta.t)}" aria-label="Meta"><select id="metaDias" aria-label="Dias" style="min-height:44px;border-radius:12px;border:1px solid var(--line);padding:0 10px">${[3,4,5,6,7].map(n=>`<option ${n===meta.of?'selected':''}>${n}</option>`).join('')}</select><button class="btn primary" style="width:auto;border-radius:14px;font-size:14px">Salvar meta</button></form>
   <p class="note" style="margin:8px 0 0">Metas medem constância (dias cumpridos), nunca peso.</p>`;
-  $('#metaForm').onsubmit=e=>{e.preventDefault();const t=$('#metaIn').value.trim().slice(0,60); const n=Math.max(3,Math.min(7,parseInt($('#metaDias').value,10)||5)); if(!t)return; if(/\d+([.,]\d+)?\s*(kg|quilos?)/i.test(t)){toast('Metas não devem ser de peso. Use hábitos, como dias cumpridos.');return} meta.t=t;meta.of=n;meta.d=0;renderMeta();toast('Meta salva. A Marina já vê.')};
+  $('#metaForm').onsubmit=e=>{e.preventDefault();const t=$('#metaIn').value.trim().slice(0,60); const n=Math.max(3,Math.min(7,parseInt($('#metaDias').value,10)||5)); if(!t)return; if(/\d+([.,]\d+)?\s*(kg|quilos?)/i.test(t)){toast('Metas não devem ser de peso. Use hábitos, como dias cumpridos.');return} meta.t=t;meta.of=n;meta.d=0;metaDates.clear();renderMeta();toast('Meta salva. A Marina já vê.')};
 }
 
 /* ---------- lembretes ---------- */
@@ -593,7 +598,7 @@ function perfilForm(who,host){
     if(!nome){toast('Escreva um nome.');return}
     campos.forEach(([k,,m])=>{p[k]=f[k].value.trim().slice(0,m)});
     p.bio=f.bio.value.trim().slice(0,200);
-    if(who==='nut'){const nm=$('.sideProfile');}
+    if(who==='pac'){$('#paciente .hello h1').textContent='Olá, '+p.nome.split(' ')[0];pacientes[0].n=p.nome;}
     perfilForm(who,host);toast('Perfil salvo.');
   };
 }

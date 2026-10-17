@@ -1,0 +1,13 @@
+node_modules/
+data/
+.env
+.env.*
+!.env.example
+*.sqlite*
+__pycache__/
+.test-results/
+tests/ok.png
+ok.png
+big.png
+evil.html
+evil.svg

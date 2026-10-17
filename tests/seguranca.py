@@ -1,3 +1,4 @@
+import os,sys
 import json,struct,zlib,os,re
 from playwright.sync_api import sync_playwright
 R=[]  # (status,name,detail)
@@ -21,7 +22,7 @@ try:
       pg.on('console',lambda m: errs.append(m.text) if m.type=='error' and 'ERR_' not in m.text and 'fonts' not in m.text and 'Failed to load resource' not in m.text else None)
       pg.on('request',lambda r:reqs.append(r.url))
       pg.add_init_script("document.addEventListener('securitypolicyviolation',e=>{(window.__viol=window.__viol||[]).push(e.violatedDirective+' '+e.blockedURI)})")
-      pg.goto('http://127.0.0.1:8765/index.html'); pg.wait_for_timeout(500)
+      pg.goto(os.getenv('BASE_URL','http://127.0.0.1:8765/demo.html')); pg.wait_for_timeout(500)
       ok('A1 carrega sem erro de JS',not errs,str(errs))
       ok('A2 CSP presente',pg.evaluate("!!document.querySelector('meta[http-equiv=Content-Security-Policy]')"))
       ok('A3 nenhum script inline',pg.evaluate("[...document.scripts].every(s=>s.src)"))
@@ -125,7 +126,7 @@ try:
       # ---------- armazenamento e rede ----------
       ok('G1 nada em localStorage/sessionStorage/cookies',pg.evaluate("localStorage.length+sessionStorage.length+document.cookie.length")==0)
       hosts=sorted({re.sub(r'^https?://([^/]+).*',r'\1',u) for u in reqs if u.startswith('http')})
-      ok('G2 só fala com o próprio site e Google Fonts',all(h in ('127.0.0.1:8765','fonts.googleapis.com','fonts.gstatic.com') for h in hosts),str(hosts))
+      ok('G2 só fala com o próprio site e Google Fonts',all(h in (__import__('urllib.parse',fromlist=['urlparse']).urlparse(os.getenv('BASE_URL','http://127.0.0.1:8765/demo.html')).netloc,'fonts.googleapis.com','fonts.gstatic.com') for h in hosts),str(hosts))
       ok('G3 todo link com target=_blank tem noopener',pg.evaluate("[...document.querySelectorAll('a[target=_blank]')].every(a=>/noopener/.test(a.rel))"))
       ok('G4 nenhum href javascript:',pg.evaluate("![...document.querySelectorAll('a[href]')].some(a=>/^javascript:/i.test(a.getAttribute('href')))"))
       # ---------- termo de consentimento ----------
@@ -139,3 +140,5 @@ res={'PASS':0,'FAIL':0}
 for s,n,d in R:
     res[s]+=1; print(s,n,('| '+d) if (s=='FAIL' and d) else '')
 print(res); print('ERRS',errs[:5]); print('REQ HOSTS',sorted({re.sub(r'^https?://([^/]+).*',r'\1',u) for u in reqs if u.startswith('http')}))
+
+sys.exit(1 if res["FAIL"] else 0)

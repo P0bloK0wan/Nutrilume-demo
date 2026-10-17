@@ -1,0 +1,49 @@
+name: Verificações Nutrilume
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m playwright install --with-deps chromium
+      - run: npm test
+      - name: Iniciar servidor local de testes
+        run: |
+          mkdir -p .test-results
+          npm start > .test-results/server.log 2>&1 &
+          python - <<'PY'
+          import time, urllib.request
+          for attempt in range(100):
+              try:
+                  urllib.request.urlopen('http://localhost:3000/api/config',timeout=1)
+                  break
+              except OSError:
+                  time.sleep(.1)
+          else:
+              raise RuntimeError('Servidor indisponível')
+          PY
+      - name: Regressões da demonstração
+        env:
+          BASE_URL: http://localhost:3000/demo.html
+        run: |
+          python tests/seguranca.py
+          python tests/comunidade.py
+          python tests/alimentos.py
+          python tests/regressoes.py
+      - name: Fluxo completo da plataforma
+        run: python tests/platform/browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evidencias
+          path: .test-results/*.png

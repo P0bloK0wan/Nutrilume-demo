@@ -1,3 +1,4 @@
+import os,sys
 from playwright.sync_api import sync_playwright
 R=[];errs=[]
 def ok(n,c,d=''): R.append(('PASS' if c else 'FAIL',n,d))
@@ -5,7 +6,7 @@ with sync_playwright() as p:
   b=p.chromium.launch(); pg=b.new_context(viewport={'width':1200,'height':900}).new_page()
   pg.on('pageerror',lambda e:errs.append(str(e)))
   pg.add_init_script("document.addEventListener('securitypolicyviolation',e=>{(window.__viol=window.__viol||[]).push(e.violatedDirective)})")
-  pg.goto('http://127.0.0.1:8765/index.html'); pg.wait_for_timeout(400)
+  pg.goto(os.getenv('BASE_URL','http://127.0.0.1:8765/demo.html')); pg.wait_for_timeout(400)
   pg.click('#v-nut'); pg.click('[data-n=plano]'); pg.wait_for_timeout(300)
   ok('A1 banco aparece',pg.locator('#foodBank').count()==1 and 'BANCO DE ALIMENTOS' in pg.inner_text('#foodBank'))
   pg.fill('#fbQ','ARROZ'); ok('A2 busca ignora maiúscula',pg.locator('#foodBank [data-fb]').count()==2)
@@ -36,3 +37,5 @@ with sync_playwright() as p:
 f=[r for r in R if r[0]=='FAIL']
 for r in R: print(*r)
 print({'PASS':len(R)-len(f),'FAIL':len(f)})
+
+sys.exit(1 if f else 0)
