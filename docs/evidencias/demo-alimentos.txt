@@ -1,0 +1,49 @@
+PASS A1 banco aparece 
+PASS A2 busca ignora maiúscula 
+PASS A3 busca ignora acento (pao→pão) 
+PASS A4 XSS na busca não executa 
+PASS A5 busca sem resultado avisa 
+PASS A6 cálculo 150 g de frango = 239 kcal e 48 g proteína BANCO DE ALIMENTOS · CÁLCULO
+Buscar alimento
+Peito de frango grelhado
+159 kcal / 100 g
+Quantidade (g)
+Adicionar em Almoço
+239
+kcal
+48 g
+proteína
+0 g
+carboidrato
+3.8 g
+gordura
+TOTAL · ALMOÇO
+0
+kcal
+0 g
+proteína
+0 g
+carboidrato
+0 g
+gordura
+TOTAL DO DIA
+0
+kcal
+0 g
+proteína
+0 g
+carboidrato
+0 g
+gordura
+
+
+PASS A7 quantidade limitada a 2000 g 
+PASS A8 quantidade negativa vira mínimo 1 
+PASS A9 adiciona item na refeição 
+PASS A10 item guarda macros e porção em g 
+PASS A11 total da refeição inclui o item 
+PASS A12 editar a porção à mão remove o cálculo 
+PASS A13 macro inválido é ignorado (não vira NaN) 
+PASS A14 publicar não quebra []
+PASS A15 sem violação de CSP 
+{'PASS': 15, 'FAIL': 0}

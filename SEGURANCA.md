@@ -1,4 +1,12 @@
-# Segurança da demonstração
+# Segurança: plataforma local e demonstração
+
+A entrada `index.html` agora usa servidor Node/SQLite; `demo.html` preserva a demonstração sem contas reais. O relatório histórico abaixo refere-se somente à demo. A plataforma usa sessões HttpOnly/SameSite, senhas com scrypt, tokens de uso único, verificação de e-mail, vínculo e consentimentos exigidos no servidor, CSRF por Origin e arquivos privados fora das rotas estáticas. Não há senha Google solicitada.
+
+A ativação assistida exige o link recebido pelo paciente e troca da senha temporária; a temporária não autentica no login comum. Planos são versionados e rascunhos ficam privados. O corpo 3D é estimado e requer autorização específica; sua visualização revalida consentimento. Fotos autorizadas são privadas; revogação remove as fotos, e arquivos/rotas privadas não são cacheados pelo service worker.
+
+Os testes atuais, cenários de regressão e limites estão em [VALIDACAO.md](docs/VALIDACAO.md). Backups e configuração externa estão em [OPERACAO.md](docs/OPERACAO.md). Esta é uma implementação local verificada em cenários específicos, sem certificação universal ou liberação clínica automática.
+
+## Relatório histórico da demonstração
 
 Resultado dos testes automáticos (`tests/seguranca.py`, Playwright + Chromium): **52 verificações, 52 aprovadas**.
 Rodar: `python3 -m http.server 8765` nesta pasta e, em outro terminal, `python3 tests/seguranca.py` (precisa de `pip install playwright`).

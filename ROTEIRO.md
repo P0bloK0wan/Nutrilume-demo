@@ -1,6 +1,6 @@
 # Nutrilume — roteiro visual
 
-Atualizado em 17/10/2026. Este é o roteiro geral proposto para transformar a demonstração em uma plataforma de acompanhamento nutricional. O visual atual será preservado como base. A prioridade inclui evolução corporal em 3D, opcional e privada para o paciente e seu nutricionista responsável.
+Atualizado em 17/10/2026. Este é o roteiro geral proposto para transformar a demonstração em uma plataforma de acompanhamento nutricional. A plataforma local foi implementada com motion e a demonstração original foi preservada em demo.html. A prioridade inclui evolução corporal em 3D, opcional e privada para o paciente e seu nutricionista responsável.
 
 Este documento acompanha entregas reais: planejamento não significa implementação concluída. Cada etapa terá tarefas menores, critérios de validação e links para as alterações correspondentes. Escolhas de backend, hospedagem, processamento 3D e provedor de WhatsApp serão registradas antes de suas integrações.
 
@@ -19,26 +19,28 @@ flowchart TD
     I --> J[9. Validação do piloto e publicação]
     classDef done fill:#E7F5BE,stroke:#2B6130,color:#14231A;
     classDef planned fill:#F5F8EC,stroke:#9AA79C,color:#14231A;
-    class A done;
-    class B,C,D,E,F,G,H,I,J planned;
+    class A,B,C,D,E,F,G,H,I done;
+    class J planned;
 ```
 
 Testes, acessibilidade, revisão de permissões e documentação acompanham todas as etapas. A etapa final verifica a plataforma integrada e não concentra toda a qualidade no fim.
+
+**Validação local atual:** consulte [resultados e limites](docs/VALIDACAO.md). Testes locais não significam implantação pública ou liberação clínica. A pesquisa de cinco apps gerou [melhorias implementadas e propostas](docs/PESQUISA-APPS.md).
 
 ## Quadro de acompanhamento
 
 | Etapa | Estado atual | Entrega que poderá ser conferida |
 | --- | --- | --- |
 | 0. Recuperar e analisar | Concluído | Código no GitHub, 103 verificações aprovadas e cinco issues abertas |
-| 1. Corrigir a demonstração | Planejado | Cálculos coerentes, paciente correto, metas por data e interface ajustada |
-| 2. Contas, dados e privacidade | Planejado | Dados salvos entre acessos e separados por conta |
-| 3. Planos e nutrição | Planejado | Planos versionados e cálculo rastreável com indicação de totais parciais |
-| 4. Avaliações e 3D privado | Planejado | Histórico de medidas e comparação corporal entre avaliações |
-| 5. Acompanhamento clínico | Planejado | Diário, ficha e hábitos organizados no histórico do paciente |
-| 6. Atendimento e comunicação | Planejado | Agenda editável, mensagens entre contas e lembretes acompanháveis |
-| 7. Espaços coletivos | Planejado | Salas e moderação com permissões e alertas separados |
-| 8. Gestão e utilidades | Planejado | Financeiro por lançamentos, compras por período e receitas calculadas |
-| 9. Piloto e publicação | Planejado | Fluxos completos conferidos e instruções de operação |
+| 1. Corrigir a demonstração | Concluído localmente | Cálculos coerentes, paciente correto, metas por data e interface ajustada |
+| 2. Contas, dados e privacidade | Concluído localmente | Dados salvos entre acessos e separados por conta |
+| 3. Planos e nutrição | Concluído localmente | Planos versionados e cálculo rastreável com indicação de totais parciais |
+| 4. Avaliações e 3D privado | Concluído localmente | Histórico de medidas e comparação corporal entre avaliações |
+| 5. Acompanhamento clínico | Concluído localmente | Diário, ficha e hábitos organizados no histórico do paciente |
+| 6. Atendimento e comunicação | Concluído localmente | Agenda editável, mensagens entre contas e lembretes acompanháveis |
+| 7. Espaços coletivos | Concluído localmente | Salas e moderação com permissões e alertas separados |
+| 8. Gestão e utilidades | Concluído localmente | Financeiro por lançamentos, compras por período e receitas calculadas |
+| 9. Piloto e publicação | Pendente de configuração externa | Fluxos completos conferidos e instruções de operação |
 
 Estados: **Planejado → Em andamento → Em validação → Concluído**. Se faltar uma decisão, credencial ou acesso, a tarefa será marcada como **Bloqueada**, com o motivo. Uma etapa só fica concluída com sua entrega implementada e verificada.
 

@@ -1,0 +1,30 @@
+PASS cadastro profissional
+PASS confirmação e login
+PASS perfil opta por diretório
+PASS nutricionista prepara paciente
+PASS paciente troca senha temporária
+PASS consentimento pelo paciente
+PASS cálculo e publicação do plano
+PASS paciente vê publicação sem XSS
+PASS origem e versão do plano explícitas
+PASS filtro organiza refeições sem editar prescrição
+PASS exportação do plano íntegro sem dados extras
+PASS compras em texto com gramas e porções manuais
+PASS avaliação alimenta corpo tridimensional
+PASS 3D privado no celular sem transbordamento
+PASS mensagem entre contas distintas
+PASS falha de rede preserva texto e permite um reenvio explícito
+PASS consulta compartilhada
+PASS agenda exporta calendário sem nomes ou observações clínicas
+PASS lançamento financeiro
+PASS revogação remove visualizador do profissional em outra sessão
+PASS upload mantém paciente original durante troca de seleção
+PASS publicação não apaga rascunho do outro paciente
+PASS publicação preserva alterações feitas depois do envio
+PASS formulário impede edição perdida durante envio
+PASS resposta atrasada preserva texto do outro paciente
+PASS busca real no diretório por cidade
+PASS localização negada mantém busca manual
+PASS redução de movimento
+PASS nenhum erro JavaScript
+29 verificações de fluxo PASS

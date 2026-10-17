@@ -1,0 +1,55 @@
+PASS A1 carrega sem erro de JS 
+PASS A2 CSP presente 
+PASS A3 nenhum script inline 
+PASS A4 sem handlers inline (on*=) 
+PASS B1 link do WhatsApp só wa.me 
+PASS B2 rel noopener noreferrer + _blank 
+PASS B3 aviso de privacidade antes de abrir 
+PASS B4 Esc fecha o aviso 
+PASS B5 números inválidos recusados 
+PASS B6 números válidos aceitos e só dígitos 
+PASS B7 texto do link codificado 
+PASS B8 injeção no número vira dígitos ou é recusada 
+PASS B9 número inválido mostra erro 
+PASS B10 número salvo normalizado 
+PASS B11 botão some quando o nutricionista desativa 
+PASS B12 nutri abre WhatsApp da paciente via wa.me 
+PASS C1 enquete conta 1 voto 
+PASS C2 não permite votar duas vezes 
+PASS C3 bloqueia peso 
+PASS C4 bloqueia link 
+PASS C5 bloqueia dose 
+PASS C6 alerta bloqueia e abre acolhimento 
+PASS C7 alerta não guarda o texto 
+PASS C8 mensagem normal publica 
+PASS C9 limite de frequência (3 s) 
+PASS C10 denúncia chega ao nutricionista 
+PASS C11 nutri vê alerta de cuidado 
+PASS C12 post oculto some para o paciente 
+PASS D1 lista de compras vem do plano 
+PASS D2 item extra entra na lista 
+PASS D3 receita expande 
+PASS D4a validação do navegador barra 99 refeições 
+PASS D4 ficha salva com limite numérico 
+PASS D5 nutri vê a ficha 
+PASS D6 meta de peso é recusada 
+PASS D7 meta nova aparece para o paciente 
+PASS D8 marcar hoje avança a meta 
+PASS D9 lembretes sem permissão não quebram 
+PASS E1 nenhum script executou (window.__x) 
+PASS E2 nenhum elemento injetado (#injected / img src=x) 
+PASS E3 nenhuma violação de CSP 
+PASS E4 payload aparece como texto (escapado) 
+PASS F upload evil.html recusado 
+PASS F upload evil.svg recusado 
+PASS F upload big.png recusado 
+PASS F upload ok.png aceito 
+PASS G1 nada em localStorage/sessionStorage/cookies 
+PASS G2 só fala com o próprio site e Google Fonts 
+PASS G3 todo link com target=_blank tem noopener 
+PASS G4 nenhum href javascript: 
+PASS H1 aceitar começa desabilitado 
+PASS H2 desmarcar volta a bloquear 
+{'PASS': 52, 'FAIL': 0}
+ERRS []
+REQ HOSTS ['fonts.googleapis.com', 'fonts.gstatic.com', 'localhost:3000']

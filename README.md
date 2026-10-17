@@ -21,7 +21,11 @@ Pacientes sem profissional podem criar conta, buscar profissionais cadastrados p
 
 **GitHub Pages não executa o servidor, o login nem o banco.** Ele permite visitar a demonstração estática e a apresentação da plataforma. Para usar contas, rode Node com volume persistente e HTTPS. Veja [OPERAÇÃO.md](docs/OPERACAO.md). Não foi contratado serviço de hospedagem nem ativada integração paga.
 
-A primeira opção recomendada é um serviço Node com disco persistente ou uma VPS com backup. Não use armazenamento temporário para SQLite. Uma migração para Postgres pode ser planejada se for necessário executar múltiplas instâncias.
+Para não gastar agora, a recomendação é testar localmente. [Opções gratuitas pesquisadas e seus limites](docs/HOSPEDAGEM-GRATUITA.md) incluem caminhos futuros com Cloudflare e Supabase; nenhum foi contratado ou provisionado. O Node/SQLite atual precisa de disco persistente. Render Free não preserva este banco; migrar para outro backend exige adaptar e testar o código.
+
+## Melhorias baseadas em avaliações públicas
+
+[Pesquisa de cinco aplicativos](docs/PESQUISA-APPS.md), com fontes e dez ideias. Foram implementados autoria/versão e filtro do plano, download do plano em JSON, compras em texto com origem, agenda em ICS, feedback de envio e preservação de contexto. Os downloads usam somente os dados já autorizados e não são backup integral da conta. [Validação](docs/VALIDACAO.md).
 
 ## Testes
 

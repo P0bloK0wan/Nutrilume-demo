@@ -1,4 +1,6 @@
-# Checkpoint de implementação — 17/10/2026
+# Checkpoint histórico de implementação — 17/10/2026
+
+**Execução retomada posteriormente.** O estado vigente está em [ESTADO-ATUAL.md](ESTADO-ATUAL.md) e [VALIDACAO.md](VALIDACAO.md). O texto abaixo preserva o estado no momento da pausa, não é o relatório final.
 
 O usuário iniciou uma nova missão de estúdio criativo antes de concluir esta branch. Os arquivos foram preservados localmente; não houve publicação desta implementação nem contratação de hospedagem.
 

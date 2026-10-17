@@ -1,0 +1,37 @@
+PASS P1 avatar padrão é a logo 
+PASS P2 ícone do app e manifest apontam para PNG 
+PASS P3 bio/nome salvos viram texto (sem XSS) 
+PASS P4 bio limitada a 200 
+PASS P5 arquivo html como foto recusado 
+PASS P6 foto png aceita e reencodada (jpeg) 
+PASS P7 foto aparece no botão do topo 
+PASS P8 "Usar a logo" restaura 
+PASS M1 botão de entrar começa desabilitado 
+PASS M2 com 3 de 4 itens continua bloqueado 
+PASS M3 4 itens liberam 
+PASS M4 apelido real/curto/espaço/telefone/html recusado ['Não use seu nome real.', 'Use 3 a 20 letras, números ou hífen, sem espaço.', 'Use 3 a 20 letras, números ou hífen, sem espaço.', 'Use 3 a 20 letras, números ou hífen, sem espaço.', 'Use 3 a 20 letras, números ou hífen, sem espaço.', 'Escolha outro apelido.', 'Não use seu nome real.']
+PASS M5 entra e mostra salas 
+PASS M6 só apelido aparece (sem nome/foto/bio) 
+PASS M7 todas as salas têm anfitrião CRN 
+PASS M8 aviso fixo na sala 
+PASS M9 bloqueia: peso 
+PASS M9 bloqueia: link 
+PASS M9 bloqueia: dose 
+PASS M9 bloqueia: link2 
+PASS M10 palavra de alerta: acolhimento com CVV 188 
+PASS M11 alerta não grava o texto 
+PASS M12 XSS na mensagem vira texto 
+PASS M13 limite de 3 s entre mensagens 
+PASS M14 denúncia registrada 
+PASS M15 bloquear some com as mensagens da pessoa 
+PASS M16 apagar a própria mensagem 
+PASS M17 sem mensagem privada entre pacientes 
+PASS N1 nutri vê a sala dela com denúncia 
+PASS N2 nutri vê apelidos, não nomes de paciente 
+PASS N3 nutri não vê as mensagens de outras salas 
+PASS N4 anfitriã oculta mensagem 
+PASS N5 bio da nutri escapada 
+PASS N6 foto da nutri no menu lateral 
+PASS Z1 nenhuma violação de CSP None
+PASS Z2 sem erros de JS []
+{'PASS': 36, 'FAIL': 0}

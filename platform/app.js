@@ -1,5 +1,6 @@
 import { request, esc, localDate, money, prettyDate } from "./api.js";
 import { mountBody3D } from "./body3d.js";
+import { planDocument, calendarText, shoppingText } from "./exports.js";
 const app = document.querySelector("#app"),
   top = document.querySelector("#topNav");
 const s = {
@@ -338,25 +339,26 @@ async function plan(g) {
   }
   if (s.user.role === "patient") {
     const p = d.current;
+    const author = p && s.links.find((x) => x.nutritionist_id === p.authorId);
     paint(
       p
-        ? `<div class="stack"><div class="card"><span class="pill">Publicado em ${prettyDate(p.created)}</span><p>${esc(p.note)}</p>${[
+        ? `<div class="stack"><div class="card"><div class="plan-provenance"><h2>Plano de ${esc(s.user.name)}</h2><p>Profissional: ${esc(author?.nutritionist_name || "Autoria não identificada nesta versão")}</p><span class="pill">Versão ${esc(p.id.slice(0, 8))} · Publicado em ${prettyDate(p.created)}</span></div><div class="actions"><button class="btn" data-export="plan">Baixar plano em JSON</button></div><p class="note">O arquivo contém seu plano e seu nome. Guarde-o em local privado. A exportação inclui todas as refeições.</p>${select("Visualizar refeição", "planMealFilter", [["all", "Todas as refeições"], ...[...new Set(p.items.map((x) => x.meal))].map((meal, i) => [String(i), meal])]).replace('name="planMealFilter"', 'name="planMealFilter" id="planMealFilter"')}<p>${esc(p.note)}</p>${[
             ...new Set(p.items.map((x) => x.meal)),
           ]
             .map(
-              (meal) =>
-                `<h3>${esc(meal)}</h3>${p.items
+              (meal, index) =>
+                `<section class="plan-meal" data-meal-index="${index}"><h3>${esc(meal)}</h3>${p.items
                   .filter((x) => x.meal === meal)
                   .map(
                     (x) =>
                       `<div class="item"><b>${esc(x.name)}</b> · ${esc(x.portion)}${x.swaps ? `<p class="note">Trocas orientadas: ${esc(x.swaps)}</p>` : ""}</div>`,
                   )
-                  .join("")}`,
+                  .join("")}</section>`,
             )
             .join(
               "",
             )}<p class="note">${esc(p.source)}</p></div><div class="card"><h3>Trocas que escolhi hoje</h3>${form("choices", area("Registre as trocas orientadas que você escolheu", "text", "", 'required maxlength="1000"'), "Salvar escolhas de hoje")}<hr class="divider"><h3>Histórico do plano</h3>${versions(d.versions)}</div></div>`
-        : empty("Seu nutricionista ainda não publicou um plano."),
+        : `<div class="card"><h2>Seu plano ainda não foi publicado</h2><p>O nutricionista precisa publicar uma versão para ela aparecer aqui. Rascunhos ficam reservados ao profissional.</p>${button("Conversar com meu nutricionista", "messages")}</div>`,
       g,
     );
     return;
@@ -582,7 +584,7 @@ async function agenda(g) {
             "Agendar consulta",
           )}</div>`
         : ""
-    }<div class="card"><h2>Consultas</h2>${d.items.map((x) => `<article class="item"><div class="row between"><div><b>${s.user.role === "nutritionist" ? esc(x.patientName) : "Sua consulta"}</b><p>${prettyDate(x.start)} · ${esc(x.mode)}</p></div><span class="pill">${esc({ scheduled: "Agendada", confirmed: "Confirmada", cancelled: "Cancelada", completed: "Realizada", missed: "Não compareceu" }[x.status])}</span></div>${["scheduled", "confirmed"].includes(x.status) ? `<div class="actions">${x.status === "scheduled" ? `<button class="btn" data-appointment-status="confirmed" data-id="${x.id}">Confirmar</button>` : ""}<button class="btn danger" data-appointment-status="cancelled" data-id="${x.id}">Cancelar</button>${s.user.role === "nutritionist" ? `<button class="btn" data-reschedule="${x.id}">Reagendar</button><button class="btn" data-appointment-status="completed" data-id="${x.id}">Marcar realizada</button>` : ""}</div><div id="reschedule-${x.id}"></div>` : ""}</article>`).join("") || empty("Nenhuma consulta cadastrada.")}</div>${r ? `<div class="card"><h3>Lembretes</h3><p class="note">${s.config?.whatsapp ? "Canal configurado; consulte os estados de envio." : "Envio automático por WhatsApp ainda não está configurado. Os lembretes ficam pendentes; nenhum envio é simulado como entregue."}</p>${r.items.map((x) => `<div class="item">${prettyDate(x.due)} · ${esc(x.status)}</div>`).join("") || empty("Nenhum lembrete gerado.")}</div>` : ""}</div>`,
+    }<div class="card"><h2>Consultas</h2><div class="actions"><button class="btn" data-export="calendar">Baixar calendário (.ics)</button></div><p class="note">Importação manual, sem sincronização automática. Inclui horários e cancelamentos, sem nomes ou observações. Ao importar, você compartilha os horários com o aplicativo escolhido.</p>${d.items.map((x) => `<article class="item"><div class="row between"><div><b>${s.user.role === "nutritionist" ? esc(x.patientName) : "Sua consulta"}</b><p>${prettyDate(x.start)} · ${esc(x.mode)}</p></div><span class="pill">${esc({ scheduled: "Agendada", confirmed: "Confirmada", cancelled: "Cancelada", completed: "Realizada", missed: "Não compareceu" }[x.status])}</span></div>${["scheduled", "confirmed"].includes(x.status) ? `<div class="actions">${x.status === "scheduled" ? `<button class="btn" data-appointment-status="confirmed" data-id="${x.id}">Confirmar</button>` : ""}<button class="btn danger" data-appointment-status="cancelled" data-id="${x.id}">Cancelar</button>${s.user.role === "nutritionist" ? `<button class="btn" data-reschedule="${x.id}">Reagendar</button><button class="btn" data-appointment-status="completed" data-id="${x.id}">Marcar realizada</button>` : ""}</div><div id="reschedule-${x.id}"></div>` : ""}</article>`).join("") || empty("Nenhuma consulta cadastrada.")}</div>${r ? `<div class="card"><h3>Lembretes</h3><p class="note">${s.config?.whatsapp ? "Canal configurado; consulte os estados de envio." : "Envio automático por WhatsApp ainda não está configurado. Os lembretes ficam pendentes; nenhum envio é simulado como entregue."}</p>${r.items.map((x) => `<div class="item">${prettyDate(x.due)} · ${esc(x.status)}</div>`).join("") || empty("Nenhum lembrete gerado.")}</div>` : ""}</div>`,
     g,
   );
 }
@@ -610,12 +612,10 @@ async function finance(g) {
   );
 }
 async function shopping(g) {
-  const list = await read(
-    patient("shopping") + "?generate=1&days=" + s.shoppingDays,
-  );
-  const items = list.items[0]?.items || [];
+  const list = await read(patient("shopping") + "?generate=1&days=" + s.shoppingDays);
+  const items = list.items[0]?.items || [], published = list.items[0]?.planVersion;
   paint(
-    `<div class="card"><h2>Sua lista de compras</h2><p class="note">As quantidades em gramas são somadas para o período. Porções manuais ficam identificadas para conferência.</p>${form("shopping-period", input("Período em dias", "days", "number", s.shoppingDays, 'min="1" max="31" required'), "Atualizar período")}<hr class="divider">${form("shopping", items.map((x, i) => check("item-" + i, esc(x.name) + (x.grams ? " · " + Math.round(x.grams) + " g" : "") + (x.manual?.length ? " · porções manuais: " + esc(x.manual.join("; ")) + " por dia" : ""), x.done)).join("") + area("Adicionar itens, um por linha", "extra", "", 'maxlength="2000"'), "Salvar lista")}<div id="shoppingNames" hidden>${esc(JSON.stringify(items))}</div></div>`,
+    `<div class="card"><h2>Sua lista de compras</h2><p class="shopping-origin">${published ? "Origem: plano " + esc(published.id.slice(0, 8)) + " · publicado em " + prettyDate(published.created) : "Sem plano publicado; confira os itens extras."} · ${s.shoppingDays} dia(s)</p><div class="actions"><button class="btn" data-export="shopping">Baixar lista em texto</button></div><p class="note">As quantidades em gramas são somadas para o período. Porções manuais ficam identificadas para conferência.</p>${form("shopping-period", input("Período em dias", "days", "number", s.shoppingDays, 'min="1" max="31" required'), "Atualizar período")}<hr class="divider">${form("shopping", items.map((x, i) => check("item-" + i, esc(x.name) + (x.grams ? " · " + Math.round(x.grams) + " g" : "") + (x.manual?.length ? " · porções manuais: " + esc(x.manual.join("; ")) + " por dia" : ""), x.done)).join("") + area("Adicionar itens, um por linha", "extra", "", 'maxlength="2000"'), "Salvar lista")}<div id="shoppingNames" hidden>${esc(JSON.stringify(items))}</div></div>`,
     g,
   );
 }
@@ -847,12 +847,20 @@ async function encodeFile(file, reencode) {
 async function submit(f) {
   const pid = s.pid,
     route = (kind) => `/patients/${pid}/${kind}`;
+  const generation = s.generation, userId = s.user?.id;
+  const sameScreen = () => generation === s.generation && userId === s.user?.id && pid === s.pid;
   const name = f.dataset.form,
     values = Object.fromEntries(new FormData(f)),
     submitter = f.querySelector("[type=submit]"),
     err = f.querySelector(".form-error");
   if (f.dataset.busy) return;
+  const originalLabel = submitter.textContent;
+  const controls = [...f.elements].map((control) => [control, control.disabled]);
+  controls.forEach(([control]) => { control.disabled = true; });
   f.dataset.busy = "1";
+  f.setAttribute("aria-busy", "true");
+  f.dataset.submitState = "pending";
+  submitter.textContent = "Enviando…";
   err.innerHTML = "";
   submitter.disabled = true;
   try {
@@ -882,6 +890,7 @@ async function submit(f) {
     }
     if (name === "password") {
       await write("/auth/password", values);
+      if (!sameScreen()) return;
       toast("Sua senha foi atualizada.");
       await refresh();
       return;
@@ -892,6 +901,7 @@ async function submit(f) {
     }
     if (name === "patient") {
       await write("/patients", values);
+      if (!sameScreen()) return;
       toast(
         "Conta preparada. A confirmação foi encaminhada ao e-mail do paciente.",
       );
@@ -909,6 +919,7 @@ async function submit(f) {
         ),
         "PUT",
       );
+      if (!sameScreen()) return;
       toast("Autorizações atualizadas.");
       await refresh();
       return;
@@ -921,6 +932,7 @@ async function submit(f) {
         if (key in body)
           body[key] = body[key] === "" ? null : Number(body[key]);
       await write("/profile", body, "PUT");
+      if (!sameScreen()) return;
       toast("Perfil atualizado.");
       await refresh();
       return;
@@ -951,13 +963,16 @@ async function submit(f) {
     if (name === "publish") {
       const draft = s.drafts.get(pid);
       draft.note = values.note;
+      const submittedDraft = JSON.stringify(draft);
       await write(
         route("plan"),
         { ...draft, catalogVersion: s.catalogVersion },
         "PUT",
       );
-      s.drafts.delete(pid);
-      toast("Nova versão publicada para este paciente.");
+      const unchanged = JSON.stringify(s.drafts.get(pid)) === submittedDraft;
+      if (unchanged) s.drafts.delete(pid);
+      if (!sameScreen()) return;
+      toast(unchanged ? "Nova versão publicada para este paciente." : "Versão enviada publicada. Alterações posteriores continuam como rascunho.");
       await render();
       return;
     }
@@ -1002,12 +1017,13 @@ async function submit(f) {
         amount: Math.round(Number(values.amount) * 100),
       });
     else if (name === "recipe") {
+      const submittedItems = JSON.stringify(s.recipeDrafts.get(pid) || []);
       await write(route("recipes"), {
         ...values,
         items: s.recipeDrafts.get(pid) || [],
         catalogVersion: s.catalogVersion,
       });
-      s.recipeDrafts.delete(pid);
+      if (JSON.stringify(s.recipeDrafts.get(pid) || []) === submittedItems) s.recipeDrafts.delete(pid);
     } else if (name === "recipe-add") {
       const id = Number(values.food),
         g = Number(values.grams),
@@ -1073,14 +1089,18 @@ async function submit(f) {
       toast("Conta excluída.");
       return;
     }
+    if (!sameScreen()) return;
     toast("Salvo com sucesso.");
     await render();
   } catch (e) {
+    f.dataset.submitState = "error";
     if (f.isConnected) err.innerHTML = `<p class="error">${esc(e.message)}</p>`;
-    else toast(e.message, true);
+    else if (sameScreen()) toast(e.message, true);
   } finally {
     if (submitter.isConnected) {
-      submitter.disabled = false;
+      controls.forEach(([control, disabled]) => { if (control.isConnected) control.disabled = disabled; });
+      submitter.textContent = originalLabel;
+      f.setAttribute("aria-busy", "false");
       delete f.dataset.busy;
     }
   }
@@ -1111,6 +1131,11 @@ document.addEventListener("input", (e) => {
   }
 });
 document.addEventListener("change", (e) => {
+  if (e.target.id === "planMealFilter") {
+    document.querySelectorAll(".plan-meal").forEach((section) => {
+      section.hidden = e.target.value !== "all" && section.dataset.mealIndex !== e.target.value;
+    });
+  }
   if (e.target.name === "role") {
     const crn = document.querySelector("#crnField");
     crn.hidden = e.target.value !== "nutritionist";
@@ -1129,6 +1154,31 @@ document.addEventListener("click", async (e) => {
   const el = e.target.closest("button,a");
   if (!el) return;
   try {
+    if (el.dataset.export) {
+      const generation = s.generation, userId = s.user?.id, pid = s.pid;
+      let content, name, type;
+      if (el.dataset.export === "plan") {
+        const data = await read(`/patients/${pid}/plan`);
+        if (!data.current) throw new Error("Nenhum plano publicado para baixar.");
+        const author = s.links.find((x) => x.nutritionist_id === data.current.authorId);
+        content = JSON.stringify(planDocument(data.current, {
+          patientName: s.user.name, nutritionistName: author?.nutritionist_name || "",
+        }), null, 2);
+        name = "nutrilume-plano.json"; type = "application/json;charset=utf-8";
+      } else if (el.dataset.export === "calendar") {
+        const data = await read("/appointments");
+        content = calendarText(data.items);
+        name = "nutrilume-consultas.ics"; type = "text/calendar;charset=utf-8";
+      } else if (el.dataset.export === "shopping") {
+        content = shoppingText(JSON.parse(document.querySelector("#shoppingNames").textContent), s.shoppingDays);
+        name = "nutrilume-compras.txt"; type = "text/plain;charset=utf-8";
+      } else return;
+      if (generation !== s.generation || userId !== s.user?.id || pid !== s.pid) return;
+      const url = URL.createObjectURL(new Blob([content], { type })), a = document.createElement("a");
+      a.href = url; a.download = name; document.body.append(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 30000);
+      return;
+    }
     if (el.dataset.go) {
       const action = el.dataset.go;
       if (action === "logout") {
@@ -1300,6 +1350,12 @@ document.addEventListener("click", async (e) => {
   }
 });
 window.addEventListener("hashchange", render);
+function connectionStatus() {
+  document.querySelector("#connectionStatus").hidden = navigator.onLine;
+}
+window.addEventListener("offline", connectionStatus);
+window.addEventListener("online", connectionStatus);
+connectionStatus();
 async function boot() {
   try {
     s.config = await request("/config");

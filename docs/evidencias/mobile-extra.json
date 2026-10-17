@@ -1,0 +1,12 @@
+{
+  "touchEmulated": true,
+  "viewport": [
+    390,
+    850
+  ],
+  "downloadByTap": true,
+  "navigationByTap": true,
+  "noHorizontalOverflow": true,
+  "visuals": "Capturas após animação, dados fictícios; nota inclui payload de XSS escapado do teste",
+  "physicalDevice": false
+}

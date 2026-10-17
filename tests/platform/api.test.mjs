@@ -203,6 +203,18 @@ test("contas, vínculo, dados clínicos, 3D e gestão ficam isolados", async (t)
       1,
     );
   });
+  await t.test("compras identificam a mesma versão usada para somar quantidades", async () => {
+    const original = (await req(`/patients/${pid}/plan`, null, pac.cookie)).data.current;
+    const before = (await req(`/patients/${pid}/shopping?generate=1&days=2`, null, pac.cookie)).data.items[0];
+    assert.equal(before.planVersion.id, original.id);
+    assert.equal(before.planVersion.created, original.created);
+    assert.equal(before.items[0].grams, 300);
+    await req(`/patients/${pid}/plan`, {...plan,items:[{foodId:5,grams:50}]},nut.cookie,"PUT");
+    const after = (await req(`/patients/${pid}/shopping?generate=1&days=2`, null, pac.cookie)).data.items[0];
+    assert.notEqual(after.planVersion.id, before.planVersion.id);
+    assert.equal(after.items[0].grams, 100);
+    assert.equal(before.items[0].grams, 300);
+  });
   await t.test("outro profissional não acessa paciente", async () =>
     assert.equal(
       (await req(`/patients/${pid}/plan`, null, other.cookie)).status,

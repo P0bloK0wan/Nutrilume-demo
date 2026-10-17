@@ -153,18 +153,25 @@ export async function careRoutes(c) {
       if (method === "GET") {
         audit(u, "read-" + kind, pid);
         let items = records();
+        // Messages belong to a relationship, not the patient's shared history.
+        // Unattributed legacy rows are retained, without guessing their link.
+        if (kind === "messages")
+          items = items.filter((x) => x.linkId === access.link.id);
+        if (kind === "plan-draft")
+          items = items.filter((x) => x.authorId === u.id);
         if(kind==="assessments"){const replaced=new Set(items.map(x=>x.supersedes).filter(Boolean));items=items.map(x=>({...x,superseded:replaced.has(x.id)}))}
         if (kind === "shopping" && url.searchParams.get("generate") === "1") {
           const days = Math.round(
               number(url.searchParams.get("days") || 7, 1, 31),
             ),
             plan = all(
-              "SELECT data FROM records WHERE patient_id=? AND kind='plan' ORDER BY created DESC,rowid DESC LIMIT 1",
+              "SELECT id,created,data FROM records WHERE patient_id=? AND kind='plan' ORDER BY created DESC,rowid DESC LIMIT 1",
               pid,
             )[0];
           items = [
             {
               days,
+              planVersion: plan ? { id: plan.id, created: plan.created } : null,
               items: shoppingFromPlan(
                 plan ? JSON.parse(plan.data) : { items: [] },
                 days,
@@ -208,8 +215,9 @@ export async function careRoutes(c) {
         c.db.exec("BEGIN IMMEDIATE");
         try {
           run(
-            "DELETE FROM records WHERE patient_id=? AND kind='plan-draft'",
+            "DELETE FROM records WHERE patient_id=? AND kind='plan-draft' AND author_id=?",
             pid,
+            u.id,
           );
           id = save(data);
           c.db.exec("COMMIT");
@@ -249,7 +257,9 @@ export async function careRoutes(c) {
         c.limit("messages:" + u.id, 100);
         const value = text(b.text, 2000);
         if (!value) fail(400, "Mensagem vazia.");
-        json(res, 201, { id: save({ text: value, from: u.id, name: u.name }) });
+        json(res, 201, {
+          id: save({ text: value, from: u.id, name: u.name, linkId: access.link.id }),
+        });
         return true;
       }
       if (kind === "habits" && method === "PUT") {

@@ -784,3 +784,13 @@ textarea {
 [hidden] {
   display: none !important;
 }
+.plan-provenance { border-left: 4px solid var(--brand); padding-left: 16px; margin-bottom: 20px; }
+.plan-meal { scroll-margin-top: 24px; }
+.plan-provenance, .shopping-origin, .card p { overflow-wrap: anywhere; }
+.connection-status { max-width: 1216px; margin: 0 auto 16px; padding: 16px 20px; color: #553600; background: #fff0c7; border-radius: 12px; }
+.workspace { padding-bottom: max(32px, env(safe-area-inset-bottom)); }
+.notices { bottom: max(16px, env(safe-area-inset-bottom)); }
+@media(max-width: 720px) {
+  .topbar { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+  .connection-status { margin: 0 16px 16px; }
+}

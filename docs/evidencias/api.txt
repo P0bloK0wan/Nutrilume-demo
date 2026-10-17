@@ -1,0 +1,82 @@
+
+> nutrilume@0.2.0 test
+> node --test tests/platform/*.test.mjs
+
+▶ contas, vínculo, dados clínicos, 3D e gestão ficam isolados
+  ✔ cadastro aceita somente os dois papéis (4.549063ms)
+  ✔ diretório somente com divulgação voluntária (8.521906ms)
+  ✔ sem confirmação, senha temporária não abre conta (37.994997ms)
+  ✔ profissional não usa a temporária após confirmação (38.623207ms)
+  ✔ troca obrigatória bloqueia recursos (2.934141ms)
+  ✔ dados protegidos até aceitar consentimento (4.289046ms)
+  ✔ rascunho é persistido e privado, sem perda em formulário inválido (11.057119ms)
+  ✔ publicação tem versão e histórico (5.896606ms)
+  ✔ compras identificam a mesma versão usada para somar quantidades (9.936864ms)
+  ✔ outro profissional não acessa paciente (2.67241ms)
+  ✔ paciente sem vínculo não acessa outro paciente (1.582002ms)
+  ✔ paciente não publica prescrição (1.901922ms)
+  ✔ avaliação e 3D exigem consentimento próprio (11.531179ms)
+  ✔ correção mantém histórico e usa a versão atual no 3D (11.804032ms)
+  ✔ hábitos repetidos não duplicam o dia (7.664165ms)
+  ✔ mensagens são compartilhadas só no vínculo (3.770442ms)
+  ✔ agenda recusa sobreposição (6.785325ms)
+  ✔ reagendar não duplica lembretes (6.936179ms)
+  ✔ financeiro é exclusivo do profissional (4.827587ms)
+  ✔ CSRF de outra origem é recusado (4.422056ms)
+  ✔ sessão inválida é recusada (2.412922ms)
+  ✔ conta existente não é sobrescrita pelo profissional (4.844309ms)
+  ✔ revogar saúde bloqueia leitura de dados (4.174742ms)
+✔ contas, vínculo, dados clínicos, 3D e gestão ficam isolados (689.440655ms)
+✔ comunidade preserva separação de sala e apelido (343.785865ms)
+✔ plan export retains only the documented fields, including inside items (2.192067ms)
+✔ plan allowlist does not preserve nested objects hidden in permitted fields (0.31443ms)
+✔ calendar converts timezone offsets to UTC and keeps content generic (1.230141ms)
+✔ cancelled events keep their UID for manual reimport without claiming sync (0.917774ms)
+✔ calendar rejects invalid, normalized, ambiguous and reversed datetimes (0.801906ms)
+✔ calendar escapes CRLF injection in IDs rather than creating properties (0.623972ms)
+✔ calendar folds Unicode at 75 UTF8 octets and unfolds losslessly (1.406321ms)
+✔ shopping export preserves period totals and labels manual portions without conversion (0.56936ms)
+✔ shopping is plain text without HTML or injected list lines (0.509006ms)
+▶ arquivos, tokens, persistência e revogações
+  ✔ token já consumido não funciona novamente (2.298688ms)
+  ✔ foto privada válida pode ser enviada (3.635448ms)
+  ✔ outro profissional não baixa foto (2.799097ms)
+  ✔ foto não vai para cache (2.726562ms)
+  ✔ revogação de fotos remove o arquivo (5.183276ms)
+  ✔ SVG disfarçado de foto é recusado (2.88531ms)
+  ✔ senha temporária não pode ser reutilizada como definitiva (43.630091ms)
+  ✔ token de recuperação expira (4.046641ms)
+  ✔ paciente sem grupo pode salvar perfil sem apelido (1.822183ms)
+  ✔ consultas canceladas não podem ser reativadas pelo paciente (14.522317ms)
+  ✔ recuperação simultânea consome token somente uma vez (87.390325ms)
+  ✔ registros e sessão persistem após reiniciar (13.24118ms)
+  ✔ vínculo encerrado pode ser solicitado novamente sem erro interno (7.285254ms)
+✔ arquivos, tokens, persistência e revogações (535.422478ms)
+✔ catálogo não aceita nutrientes inválidos (1.111768ms)
+✔ versão diferente não altera silenciosamente identidade do alimento (0.530767ms)
+✔ servidor calcula nutrientes e receita por porção (0.380645ms)
+✔ compras somam repetições e período sem converter porção manual (0.910189ms)
+▶ troca de profissional isola conversa do vínculo e rascunho do autor
+  ✔ novas mensagens persistem vínculo autorizado e ignoram linkId enviado (0.912674ms)
+  ✔ chat ativo exibe a conversa atual e não atribui mensagens legadas (5.249584ms)
+  ✔ novo profissional e paciente não veem conversa encerrada (4.916405ms)
+  ✔ novo chat pertence ao vínculo Beta e é visível aos participantes (8.893043ms)
+  ✔ rascunho anterior não aparece para Beta (1.541796ms)
+  ✔ histórico publicado autorizado continua disponível (2.651491ms)
+  ✔ salvar e publicar Beta preserva rascunho Alpha (13.29396ms)
+  ✔ profissional encerrado recebe403 e registros anteriores permanecem (7.593684ms)
+✔ troca de profissional isola conversa do vínculo e rascunho do autor (441.061913ms)
+▶ fila respeita opt-in e não repete envios incertos
+  ✔ sem opt-in não envia (1.157053ms)
+  ✔ aceitação e incerteza são estados distintos (1.859774ms)
+  ✔ nenhum dos dois envios é repetido automaticamente (0.292189ms)
+✔ fila respeita opt-in e não repete envios incertos (6.823567ms)
+✔ datas inválidas são erro de entrada, incluindo mês impossível (1.52781ms)
+ℹ tests 66
+ℹ suites 0
+ℹ pass 66
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2613.644028

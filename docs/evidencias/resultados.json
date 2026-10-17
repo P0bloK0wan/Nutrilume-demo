@@ -1,0 +1,29 @@
+{
+  "observedAt": "2026-10-17T10:52:08.836183+00:00",
+  "environment": {
+    "node": "24.19.0",
+    "python": "3.12.14",
+    "browser": "Chromium via Playwright, Linux; emulação móvel, sem aparelho físico"
+  },
+  "results": {
+    "apiAndSerializers": {
+      "passed": 66,
+      "failed": 0
+    },
+    "browserFlows": {
+      "passed": 29,
+      "failed": 0
+    },
+    "demo": {
+      "security": 52,
+      "community": 36,
+      "foods": 15,
+      "regressions": 6,
+      "failed": 0
+    }
+  },
+  "backupSmokeTest": "Fonte fictícia aberta/WAL, registro restaurado e fonte preservada; sessões e tokens removidos da cópia; integrity_check=ok",
+  "externalDeliveryTested": false,
+  "publicDeployment": false,
+  "data": "Somente fictícios; banco, tokens, e-mails de ativação e runtime não incluídos nas evidências"
+}

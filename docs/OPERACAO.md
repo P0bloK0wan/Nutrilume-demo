@@ -8,7 +8,7 @@ Para abrir o fluxo local, consulte o link do e-mail específico em `data/mailbox
 
 ## Publicação futura
 
-O usuário optou por receber recomendação sem contratar agora. Recomenda-se inicialmente um servidor Node com disco persistente (por exemplo, um serviço web com volume persistente ou uma VPS), HTTPS e backup externo. Planos gratuitos com disco temporário não preservam este banco. Compare custos atuais antes de contratar; nenhum preço foi assumido.
+O usuário optou por receber recomendação sem contratar agora. Veja a [comparação gratuita com fontes oficiais](HOSPEDAGEM-GRATUITA.md). Para esta etapa, o caminho recomendado é local, sem ativar serviços externos. Recomenda-se inicialmente um servidor Node com disco persistente (por exemplo, um serviço web com volume persistente ou uma VPS), HTTPS e backup externo. Planos gratuitos com disco temporário não preservam este banco. Compare custos atuais antes de contratar; nenhum preço foi assumido.
 
 O Dockerfile é uma opção de empacotamento; não foi implantado em um provedor. Monte `/app/data` em volume persistente com permissão para o usuário `node`. Defina `NODE_ENV=production`, `APP_URL=https://seu-dominio`, `HOST=0.0.0.0`, `RESEND_API_KEY` e `MAIL_FROM` com domínio validado. O processo recusa iniciar em produção sem HTTPS/e-mail configurados. Use segredos da hospedagem, nunca valores no Git ou no navegador.
 
