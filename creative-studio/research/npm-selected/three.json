@@ -1,0 +1,58 @@
+{
+  "name": "three",
+  "version": "0.186.1",
+  "license": "MIT",
+  "engines": null,
+  "scripts": {
+    "dev": "node utils/build/dev.js && node utils/server.js -p 8080",
+    "lint": "npm run lint-core",
+    "test": "npm run lint && npm run test-unit && npm run test-unit-addons",
+    "build": "rollup -c utils/build/rollup.config.js",
+    "start": "npm run dev",
+    "preview": "node utils/build/preview.js",
+    "lint-fix": "npm run lint-core -- --fix && npm run lint-addons -- --fix && npm run lint-examples -- --fix && npm run lint-editor -- --fix && npm run lint-manual -- --fix && npm run lint-test -- --fix && npm run lint-utils -- --fix && npm run lint-tsl -- --fix",
+    "lint-tsl": "eslint tsl",
+    "test-e2e": "node test/e2e/puppeteer.js",
+    "lint-core": "eslint src",
+    "lint-test": "eslint test",
+    "test-unit": "node test/unit/puppeteer.unit.js --testPage=UnitTests.html --mode=headless",
+    "build-docs": "jsdoc -c utils/docs/jsdoc.config.json && npm run build-llms",
+    "build-llms": "node utils/llms/build.js",
+    "lint-utils": "eslint utils",
+    "lint-addons": "eslint examples/jsm",
+    "lint-editor": "eslint editor",
+    "lint-manual": "eslint manual",
+    "test-e2e-cov": "node test/e2e/check-coverage.js",
+    "lint-examples": "eslint examples",
+    "test-treeshake": "rollup -c test/rollup.treeshake.config.js",
+    "make-screenshot": "node test/e2e/puppeteer.js --make",
+    "test-e2e-webgpu": "node test/e2e/puppeteer.js --webgpu",
+    "test-unit-addons": "node test/unit/puppeteer.unit.js --testPage=UnitTestsAddons.html --mode=headless",
+    "test-unit-headful": "node test/unit/puppeteer.unit.js --testPage=UnitTests.html --mode=headful",
+    "test-unit-addons-headful": "node test/unit/puppeteer.unit.js --testPage=UnitTestsAddons.html --mode=headful"
+  },
+  "dependencies": null,
+  "optionalDependencies": null,
+  "peerDependencies": null,
+  "dist": {
+    "shasum": "6d50f70c2c437f844179bbb56d6f5b774e1ca38a",
+    "tarball": "https://registry.npmjs.org/three/-/three-0.186.1.tgz",
+    "fileCount": 1263,
+    "integrity": "sha512-blFeqb49wRCSGUGj7gtpfnSGHy2lwDk94RhUmS1c/hTby70kvChbWpkJ4Pm1390LqzzvTmzgXKHPEafJwCb8jA==",
+    "signatures": [
+      {
+        "sig": "MEUCICldcpbcHhT4cNN5FeIhlbfekATi/CJUpk7mUDtPas5yAiEA/apNIzYS5sOdYRaeAK5Uae2O23E0Hl7Mo5TqNt9GWxA=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "sig": "MEUCIQCR0d1POSyDcCWApl93klyA2uB9zYBro/9ru2SUGgXSkAIgVdc8c/NKCiqjo3zmTooBB+GimZ+6BwK/1VLTO83itr4=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "unpackedSize": 20443256
+  },
+  "repository": {
+    "url": "git+https://github.com/mrdoob/three.js.git",
+    "type": "git"
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "passed": true,
+  "count": 44,
+  "checks": [
+    {
+      "name": "nonempty: README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: AGENTS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: docs/REPORT.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: docs/STATUS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: docs/audits/3d.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: docs/audits/motion.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: docs/audits/orchestration-web.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: docs/SKILL-VALIDATION.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: apps/web/dist/index.html",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: apps/web/dist/product.html",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: apps/web/package-lock.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: apps/motion/package-lock.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: artifacts/blender/hero.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: artifacts/blender/aura-object-01.blend",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: artifacts/blender/aura-object-01.glb",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nonempty: artifacts/blender/fundamentals-lab.blend",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: apps/web/dist/index.html",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: apps/web/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: artifacts/blender/hero.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: apps/web/dist/product.html",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: artifacts/blender/aura-object-01.glb",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: artifacts/motion/frame-150.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: artifacts/motion/aura-commercial.mp4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: apps/motion/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: artifacts/motion/aura-commercial.mp4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: artifacts/blender/hero.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: artifacts/blender/aura-film.mp4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: artifacts/blender/aura-object-01.blend",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: artifacts/blender/fundamentals-lab.blend",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: docs/ARCHITECTURE.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: docs/REPORT.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gallery link: docs/COSTS-AND-LIMITS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "27 source audits",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Blender video exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Blender ffprobe",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Blender video duration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Blender video stream",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Blender full decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Remotion video exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Remotion ffprobe",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Remotion video duration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Remotion video stream",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Remotion full decode",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

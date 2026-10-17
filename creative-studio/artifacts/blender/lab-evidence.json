@@ -1,0 +1,24 @@
+{
+  "blender": "4.3.2",
+  "frames_evaluated": 48,
+  "ik_tip_target_distance_frame_1": 8e-05,
+  "shape_key_dimensions_frame_1": [
+    1.9999992847442627,
+    1.999999761581421,
+    2.0
+  ],
+  "shape_key_dimensions_frame_48": [
+    3.1999988555908203,
+    3.1999995708465576,
+    1.100000023841858
+  ],
+  "rigid_body_start_z": 2.4000000953674316,
+  "rigid_body_end_z": 0.3400000035762787,
+  "geometry_nodes_realized_polygons": 1500,
+  "checks": {
+    "ik": true,
+    "shape_key": true,
+    "rigid_body": true,
+    "geometry_nodes": true
+  }
+}

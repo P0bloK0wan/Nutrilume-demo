@@ -1,0 +1,20 @@
+{
+  "path": "/workspace/creative-studio/artifacts/blender/aura-object-01.glb",
+  "bytes": 211420,
+  "meshes": 8,
+  "materials": 5,
+  "animations": 0,
+  "triangles": 7756,
+  "extensions": [
+    "KHR_materials_anisotropy"
+  ],
+  "structuralChecks": "pass",
+  "notes": [
+    "Validação estrutural básica própria; não substitui Khronos glTF Validator nem inspeção visual."
+  ],
+  "sha256": "40c821c402ffda2928272afe27e50fde662d33711cb29571643aac6a08ee5754",
+  "gzipBytes": 76360,
+  "transferReductionPercent": 63.9,
+  "withinExampleMobileBudget": true,
+  "note": "Gzip é compressão de transferência: usar Content-Encoding gzip quando servido. Não reduz polígonos, draw calls ou memória GPU. Não é Draco/Meshopt/KTX2."
+}

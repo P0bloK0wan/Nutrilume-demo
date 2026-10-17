@@ -1,0 +1,31 @@
+{
+  "hero": {
+    "resolution": [
+      1280,
+      720
+    ],
+    "engine": "Cycles CPU",
+    "samples": 96,
+    "threads": 2,
+    "denoise": false,
+    "visually_inspected": true
+  },
+  "video": {
+    "codec": "h264",
+    "resolution": [
+      640,
+      360
+    ],
+    "frames": 48,
+    "fps": "24/1",
+    "duration": "2.000000",
+    "decode_test_exit": 0
+  },
+  "lab_checks": {
+    "ik": true,
+    "shape_key": true,
+    "rigid_body": true,
+    "geometry_nodes": true
+  },
+  "glb_reimport_mesh_count": 8
+}

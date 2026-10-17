@@ -1,0 +1,248 @@
+[
+  {
+    "repository": "obra/superpowers",
+    "url": "https://github.com/obra/superpowers",
+    "sha": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+    "ref": "main",
+    "license": "MIT",
+    "decision": "usar procedimentos; não instalar plugin duplicado",
+    "filesRead": [
+      "LICENSE",
+      "README.md",
+      "package.json",
+      "hooks/hooks.json",
+      "hooks/session-start",
+      "skills/using-superpowers/SKILL.md",
+      "skills/dispatching-parallel-agents/SKILL.md"
+    ],
+    "notes": "Skills Markdown + hooks por host. session-start lê using-superpowers e injeta texto no contexto em JSON; não é runtime de LLM. Requer host compatível e Bash nos hooks. Reutilizar brief, plano, depuração e verificação proporcionais ao trabalho. Riscos: instruções imperativas e excesso de processo; companion visual carrega logo remoto por padrão (SUPERPOWERS_DISABLE_TELEMETRY desabilita). Usar procedimentos locais curados, sem copiar autoridade dos textos auditados.",
+    "sourceUrls": [
+      "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/LICENSE",
+      "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/README.md",
+      "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/package.json",
+      "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/hooks/hooks.json",
+      "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/hooks/session-start",
+      "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/using-superpowers/SKILL.md",
+      "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/dispatching-parallel-agents/SKILL.md"
+    ]
+  },
+  {
+    "repository": "bmad-code-org/BMAD-METHOD",
+    "url": "https://github.com/bmad-code-org/BMAD-METHOD",
+    "sha": "cfba3ff5f982c1809e060606e399f55ebd7bce5e",
+    "ref": "main",
+    "license": "MIT",
+    "decision": "consultar; não instalar",
+    "filesRead": [
+      "LICENSE",
+      "README.md",
+      "pyproject.toml",
+      "skills/bmad/SKILL.md",
+      "skills/bmad-build/SKILL.md",
+      "skills/bmad/scripts/knowledge.py",
+      "skills/bmad/scripts/setup.py"
+    ],
+    "notes": "Método de entrega com papéis produto/arquitetura/UX/dev/QA e skills. Branch auditada é V7 preview alpha; README separa stable V6.12. Python >=3.11 no pyproject V7; uv e host de skills; instalação via skills CLI também requer Node/npm/Git. Stable anuncia Node20.12+/Python3.10+, não confundir com V7. knowledge.py enumera módulos e setup.py prepara runtime/configuração _bmad; instalação/updates escrevem arquivos e podem buscar fontes. Reutilizar brief e decisões arquiteturais duráveis; evitar segunda metodologia completa concorrendo com skills já disponíveis.",
+    "sourceUrls": [
+      "https://github.com/bmad-code-org/BMAD-METHOD/blob/cfba3ff5f982c1809e060606e399f55ebd7bce5e/LICENSE",
+      "https://github.com/bmad-code-org/BMAD-METHOD/blob/cfba3ff5f982c1809e060606e399f55ebd7bce5e/README.md",
+      "https://github.com/bmad-code-org/BMAD-METHOD/blob/cfba3ff5f982c1809e060606e399f55ebd7bce5e/pyproject.toml",
+      "https://github.com/bmad-code-org/BMAD-METHOD/blob/cfba3ff5f982c1809e060606e399f55ebd7bce5e/skills/bmad/SKILL.md",
+      "https://github.com/bmad-code-org/BMAD-METHOD/blob/cfba3ff5f982c1809e060606e399f55ebd7bce5e/skills/bmad-build/SKILL.md",
+      "https://github.com/bmad-code-org/BMAD-METHOD/blob/cfba3ff5f982c1809e060606e399f55ebd7bce5e/skills/bmad/scripts/knowledge.py",
+      "https://github.com/bmad-code-org/BMAD-METHOD/blob/cfba3ff5f982c1809e060606e399f55ebd7bce5e/skills/bmad/scripts/setup.py"
+    ]
+  },
+  {
+    "repository": "openai/openai-agents-js",
+    "url": "https://github.com/openai/openai-agents-js",
+    "sha": "9687b544c8c873080e6ff7e7d294c0b353cd9ab6",
+    "ref": "main",
+    "license": "MIT",
+    "decision": "consultar; não instalar framework",
+    "filesRead": [
+      "LICENSE",
+      "README.md",
+      "package.json",
+      "packages/agents/package.json",
+      "packages/agents-core/package.json",
+      "examples/basic/hello-world.ts",
+      "packages/agents/src/index.ts",
+      "packages/agents-core/src/run.ts"
+    ],
+    "notes": "SDK TypeScript de Agent/run, handoffs, tools, guardrails e tracing; pacote principal configura OpenAIProvider e exporter de tracing. README requer Node22+ (também Bun/Deno/workers documentados); Zod4 peer. Exemplo hello-world faz inferência, e README exige OPENAI_API_KEY para agentes text/sandbox. Realtime no browser usa token efêmero criado no servidor. Scripts monorepo incluem prepare=husky e exemplos/integration que podem chamar serviços; não executar nesta auditoria. Padrão reutilizável: contratos de ferramenta explícitos e transferências de responsabilidade. Alternativa futura para produto com backend de IA, custo e autorização próprios; não necessária à orquestração desta sessão.",
+    "sourceUrls": [
+      "https://github.com/openai/openai-agents-js/blob/9687b544c8c873080e6ff7e7d294c0b353cd9ab6/LICENSE",
+      "https://github.com/openai/openai-agents-js/blob/9687b544c8c873080e6ff7e7d294c0b353cd9ab6/README.md",
+      "https://github.com/openai/openai-agents-js/blob/9687b544c8c873080e6ff7e7d294c0b353cd9ab6/package.json",
+      "https://github.com/openai/openai-agents-js/blob/9687b544c8c873080e6ff7e7d294c0b353cd9ab6/packages/agents/package.json",
+      "https://github.com/openai/openai-agents-js/blob/9687b544c8c873080e6ff7e7d294c0b353cd9ab6/packages/agents-core/package.json",
+      "https://github.com/openai/openai-agents-js/blob/9687b544c8c873080e6ff7e7d294c0b353cd9ab6/examples/basic/hello-world.ts",
+      "https://github.com/openai/openai-agents-js/blob/9687b544c8c873080e6ff7e7d294c0b353cd9ab6/packages/agents/src/index.ts",
+      "https://github.com/openai/openai-agents-js/blob/9687b544c8c873080e6ff7e7d294c0b353cd9ab6/packages/agents-core/src/run.ts"
+    ]
+  },
+  {
+    "repository": "crewAIInc/crewAI",
+    "url": "https://github.com/crewAIInc/crewAI",
+    "sha": "40bb2d3b586e8367d206090cc62df5242206008f",
+    "ref": "main",
+    "license": "MIT",
+    "decision": "consultar; não instalar framework",
+    "filesRead": [
+      "LICENSE",
+      "README.md",
+      "pyproject.toml",
+      "lib/crewai/pyproject.toml",
+      "lib/crewai/src/crewai/crew.py"
+    ],
+    "notes": "Framework Python com Agent/Task/Crew e Flow orientado a eventos, estado Pydantic e decorators start/listen/router. Python>=3.10,<3.14 e uv; provider LLM configurado, chave Serper opcional para busca. crew.py integra OpenTelemetry; README descreve telemetria anônima e share_crew opt-in com dados detalhados; OTEL_SDK_DISABLED=true é opção documentada. Dependências/provider adapters e persistência ampliam superfície operacional. Reutilizar separação fluxo determinístico/delegação; não duplicar o runtime nativo.",
+    "sourceUrls": [
+      "https://github.com/crewAIInc/crewAI/blob/40bb2d3b586e8367d206090cc62df5242206008f/LICENSE",
+      "https://github.com/crewAIInc/crewAI/blob/40bb2d3b586e8367d206090cc62df5242206008f/README.md",
+      "https://github.com/crewAIInc/crewAI/blob/40bb2d3b586e8367d206090cc62df5242206008f/pyproject.toml",
+      "https://github.com/crewAIInc/crewAI/blob/40bb2d3b586e8367d206090cc62df5242206008f/lib/crewai/pyproject.toml",
+      "https://github.com/crewAIInc/crewAI/blob/40bb2d3b586e8367d206090cc62df5242206008f/lib/crewai/src/crewai/crew.py"
+    ]
+  },
+  {
+    "repository": "langchain-ai/deepagents",
+    "url": "https://github.com/langchain-ai/deepagents",
+    "sha": "0c99fd026c4c41a08e6725a5e45d5ac111dcc6bb",
+    "ref": "main",
+    "license": "MIT",
+    "decision": "consultar; não instalar framework",
+    "filesRead": [
+      "LICENSE",
+      "README.md",
+      "libs/deepagents/pyproject.toml",
+      "libs/deepagents/deepagents/graph.py"
+    ],
+    "notes": "Harness sobre LangChain create_agent e LangGraph: filesystem, planejamento, subagentes isolados, middleware de contexto, memória e aprovação humana. Python>=3.11,<4; libs/deepagents pyproject inclui LangChain/Core/Anthropic/Google/LangSmith. Modelos com tool calling podem ser remotos ou locais (Ollama/vLLM/llama.cpp), portanto chave não é universalmente obrigatória, mas é necessário prover inferência e recursos. README sugere curl|bash para CLI; não executado. Shell/filesystem exigem escopo e sandbox explícitos, e tracing externo exige configuração. Reutilizar contexto isolado e arquivos de evidência; alternativa quando persistência de agentes fora desta sessão for requisito concreto.",
+    "sourceUrls": [
+      "https://github.com/langchain-ai/deepagents/blob/0c99fd026c4c41a08e6725a5e45d5ac111dcc6bb/LICENSE",
+      "https://github.com/langchain-ai/deepagents/blob/0c99fd026c4c41a08e6725a5e45d5ac111dcc6bb/README.md",
+      "https://github.com/langchain-ai/deepagents/blob/0c99fd026c4c41a08e6725a5e45d5ac111dcc6bb/libs/deepagents/pyproject.toml",
+      "https://github.com/langchain-ai/deepagents/blob/0c99fd026c4c41a08e6725a5e45d5ac111dcc6bb/libs/deepagents/deepagents/graph.py"
+    ]
+  },
+  {
+    "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+    "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+    "sha": "56ea9cf174ed86786187daa9de0e6247cb0747e4",
+    "ref": "main",
+    "license": "MIT",
+    "decision": "consultar e adaptar padrões locais; não instalar CLI global",
+    "filesRead": [
+      "LICENSE",
+      "README.md",
+      ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "cli/package.json",
+      "src/ui-ux-pro-max/scripts/search.py",
+      "cli/src/index.ts"
+    ],
+    "notes": "Skill de design e busca BM25 em CSV; search.py usa argparse/core/design_system e gera recomendações por domínio/stack. Python3; CLI TypeScript/Node com Commander, Chalk, Ora e Prompts, build com Node e dev com Bun. CLI init/update escreve templates no projeto ou home; force pode sobrescrever. search --persist grava MASTER.md e overrides e --force pode substituir decisões. Consulta local não exige API key LLM; atualização de catálogo Google Fonts usa API e segredo separados. MIT confirmado em LICENSE e cli/package.json, não inferido pelo nome Pro Max. Fontes/ícones/ativos sugeridos têm licenças próprias. Reutilizar tokens, heurísticas de acessibilidade e motion/reduced-motion; recomendações e alegações de qualidade precisam validação humana/browser.",
+    "sourceUrls": [
+      "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/56ea9cf174ed86786187daa9de0e6247cb0747e4/LICENSE",
+      "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/56ea9cf174ed86786187daa9de0e6247cb0747e4/README.md",
+      "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/56ea9cf174ed86786187daa9de0e6247cb0747e4/.claude/skills/ui-ux-pro-max/SKILL.md",
+      "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/56ea9cf174ed86786187daa9de0e6247cb0747e4/cli/package.json",
+      "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/56ea9cf174ed86786187daa9de0e6247cb0747e4/src/ui-ux-pro-max/scripts/search.py",
+      "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/56ea9cf174ed86786187daa9de0e6247cb0747e4/cli/src/index.ts"
+    ]
+  },
+  {
+    "repository": "DavidHDev/react-bits",
+    "url": "https://github.com/DavidHDev/react-bits",
+    "sha": "310fc737fadcaa149a4e06fb088fc95332dc8bfb",
+    "ref": "main",
+    "license": "MIT + Commons Clause License Condition v1.0 (texto customizado)",
+    "decision": "consultar; uso em aplicação condicionado à licença; não redistribuir biblioteca",
+    "filesRead": [
+      "LICENSE.md",
+      "README.md",
+      "package.json",
+      "src/content/TextAnimations/SplitText/SplitText.jsx",
+      "src/content/Backgrounds/Aurora/Aurora.jsx"
+    ],
+    "notes": "Coleção de componentes React e variantes JS/TS/CSS/Tailwind, efeitos e ferramentas. SplitText importa gsap, ScrollTrigger, SplitText e @gsap/react; Aurora usa ciclo React/CSS. package contém GSAP/OGL e ampla toolchain do site; scripts geram componentes/registry/SEO/previews, não são requisitos de um único efeito. LICENSE permite uso comercial como parte de aplicação/site/produto, mas proíbe vender, sublicenciar ou redistribuir componentes isolados, em bundle ou portados. Não classificar como MIT puro nem copiar catálogo para um kit distribuível. README aponta avisos de terceiros para shaders. Reutilizar apenas inspiração/padrões ou componente adequado com atribuições, após avaliar destino do produto; animar texto/WebGL requer medir custo, cleanup e reduced motion.",
+    "sourceUrls": [
+      "https://github.com/DavidHDev/react-bits/blob/310fc737fadcaa149a4e06fb088fc95332dc8bfb/LICENSE.md",
+      "https://github.com/DavidHDev/react-bits/blob/310fc737fadcaa149a4e06fb088fc95332dc8bfb/README.md",
+      "https://github.com/DavidHDev/react-bits/blob/310fc737fadcaa149a4e06fb088fc95332dc8bfb/package.json",
+      "https://github.com/DavidHDev/react-bits/blob/310fc737fadcaa149a4e06fb088fc95332dc8bfb/src/content/TextAnimations/SplitText/SplitText.jsx",
+      "https://github.com/DavidHDev/react-bits/blob/310fc737fadcaa149a4e06fb088fc95332dc8bfb/src/content/Backgrounds/Aurora/Aurora.jsx"
+    ]
+  },
+  {
+    "repository": "magicuidesign/magicui",
+    "url": "https://github.com/magicuidesign/magicui",
+    "sha": "efe76fc5755eca1142dd4f74c1d6f0ace2887e3c",
+    "ref": "main",
+    "license": "MIT",
+    "decision": "usar seletivamente como referência/componentes; não instalar monorepo",
+    "filesRead": [
+      "LICENSE.md",
+      "README.md",
+      "package.json",
+      "apps/www/package.json",
+      "apps/www/registry/magicui/blur-fade.tsx",
+      "apps/www/content/docs/components/blur-fade.mdx"
+    ],
+    "notes": "Registry de componentes React/TSX com Motion/Tailwind e site docs Next.js. BlurFade é client component, usa motion/react, AnimatePresence/useInView; documentação mostra instalação manual/registry. Monorepo exige Node>=22.14.0; apps/www tem postinstall=fumadocs-mdx. Copiar somente componente revisado e suas dependências com LICENSE, evitando toolchain/docs inteira. Efeitos blur/inView precisam medir custo e revisar acessibilidade, comportamento sem animação e SSR/hidratação. Reutilizar revelação progressiva sutil e composição de props; não empilhar Motion e GSAP para controlar a mesma propriedade.",
+    "sourceUrls": [
+      "https://github.com/magicuidesign/magicui/blob/efe76fc5755eca1142dd4f74c1d6f0ace2887e3c/LICENSE.md",
+      "https://github.com/magicuidesign/magicui/blob/efe76fc5755eca1142dd4f74c1d6f0ace2887e3c/README.md",
+      "https://github.com/magicuidesign/magicui/blob/efe76fc5755eca1142dd4f74c1d6f0ace2887e3c/package.json",
+      "https://github.com/magicuidesign/magicui/blob/efe76fc5755eca1142dd4f74c1d6f0ace2887e3c/apps/www/package.json",
+      "https://github.com/magicuidesign/magicui/blob/efe76fc5755eca1142dd4f74c1d6f0ace2887e3c/apps/www/registry/magicui/blur-fade.tsx",
+      "https://github.com/magicuidesign/magicui/blob/efe76fc5755eca1142dd4f74c1d6f0ace2887e3c/apps/www/content/docs/components/blur-fade.mdx"
+    ]
+  },
+  {
+    "repository": "ibelick/motion-primitives",
+    "url": "https://github.com/ibelick/motion-primitives",
+    "sha": "120f64f6ca60348e251f929e9c81f11ccbe45eda",
+    "ref": "main",
+    "license": "MIT (LICENCE.md, grafia britânica)",
+    "decision": "usar seletivamente como referência/componentes; não instalar site",
+    "filesRead": [
+      "README.md",
+      "package.json",
+      "components/core/animated-group.tsx",
+      "components/core/text-effect.tsx",
+      "LICENCE.md",
+      "app/docs/animated-group/page.mdx"
+    ],
+    "notes": "Primitivas React/TSX sobre motion/react e Tailwind, projeto beta. AnimatedGroup fornece variantes/presets e stagger de filhos; TextEffect compõe AnimatePresence/Motion. README linka /LICENSE.md que não existe nessa grafia: árvore contém LICENCE.md, cujo texto MIT foi lido (inclui linha solta app/page.tsx após licença). package do site inclui scripts Next e deploy:preview=wrangler versions upload: não executar deploy para obter componente. Revisar keys/semântica de texto, foco, reduced motion, blur e presets antes de adaptar. Biblioteca independente de IA/chaves.",
+    "sourceUrls": [
+      "https://github.com/ibelick/motion-primitives/blob/120f64f6ca60348e251f929e9c81f11ccbe45eda/README.md",
+      "https://github.com/ibelick/motion-primitives/blob/120f64f6ca60348e251f929e9c81f11ccbe45eda/package.json",
+      "https://github.com/ibelick/motion-primitives/blob/120f64f6ca60348e251f929e9c81f11ccbe45eda/components/core/animated-group.tsx",
+      "https://github.com/ibelick/motion-primitives/blob/120f64f6ca60348e251f929e9c81f11ccbe45eda/components/core/text-effect.tsx",
+      "https://github.com/ibelick/motion-primitives/blob/120f64f6ca60348e251f929e9c81f11ccbe45eda/LICENCE.md",
+      "https://github.com/ibelick/motion-primitives/blob/120f64f6ca60348e251f929e9c81f11ccbe45eda/app/docs/animated-group/page.mdx"
+    ]
+  },
+  {
+    "repository": "greensock/GSAP",
+    "url": "https://github.com/greensock/GSAP",
+    "sha": "13e2b790546426a1a2e0e9b409f3f8dc6d6611f2",
+    "ref": "master",
+    "license": "GSAP Standard 'no charge' license (customizada; não MIT)",
+    "decision": "usar como motor de timeline/scroll no projeto; sem instalação nesta auditoria",
+    "filesRead": [
+      "README.md",
+      "package.json",
+      "src/index.js",
+      "src/gsap-core.js"
+    ],
+    "notes": "Motor JavaScript independente de framework: tweens/timelines, easing e plugins. src/index.js registra CSSPlugin; gsap-core header e package apontam https://gsap.com/standard-license. README afirma todos plugins gratuitos inclusive uso comercial e recomenda @gsap/react para cleanup. Versão fonte3.15.0; ESM e dist UMD, sem provider/API key. Usar timeline única, escopar seletores, destruir ScrollTriggers/timers em unmount, respeitar prefers-reduced-motion e evitar dupla propriedade com Motion/loop Three. Licença customizada vinculada não equivale a MIT; texto integral externo não foi capturado, logo não concluir permissão irrestrita de redistribuição ou produtos concorrentes. Conferir termos vigentes no destino antes de distribuir SDK/kit.",
+    "sourceUrls": [
+      "https://github.com/greensock/GSAP/blob/13e2b790546426a1a2e0e9b409f3f8dc6d6611f2/README.md",
+      "https://github.com/greensock/GSAP/blob/13e2b790546426a1a2e0e9b409f3f8dc6d6611f2/package.json",
+      "https://github.com/greensock/GSAP/blob/13e2b790546426a1a2e0e9b409f3f8dc6d6611f2/src/index.js",
+      "https://github.com/greensock/GSAP/blob/13e2b790546426a1a2e0e9b409f3f8dc6d6611f2/src/gsap-core.js"
+    ]
+  }
+]

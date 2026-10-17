@@ -1,0 +1,72 @@
+{
+  "name": "vite",
+  "version": "8.3.4",
+  "license": "MIT",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "premove dist && pnpm build-bundle -w",
+    "lint": "eslint --cache --ext .ts src/**",
+    "build": "premove dist && pnpm build-bundle && pnpm build-types",
+    "format": "oxfmt",
+    "typecheck": "tsc && tsc -p src/node && tsc -p src/client && tsc -p src/module-runner && tsc -p src/shared && tsc -p src/node/__tests_dts__ && tsc -p src/module-runner/__tests_dts__",
+    "build-types": "pnpm build-types-roll && pnpm build-types-check",
+    "build-bundle": "rolldown --config rolldown.config.ts",
+    "generate-target": "tsx scripts/generateTarget.ts",
+    "build-types-roll": "rolldown --config rolldown.dts.config.ts",
+    "build-types-check": "tsc --project tsconfig.check.json"
+  },
+  "dependencies": {
+    "postcss": "^8.5.29",
+    "rolldown": "~1.2.12",
+    "picomatch": "^4.0.7",
+    "tinyglobby": "^0.2.17",
+    "lightningcss": "^1.33.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "~2.3.3"
+  },
+  "peerDependencies": {
+    "tsx": "^4.8.1",
+    "jiti": ">=1.21.0",
+    "less": "^4.0.0",
+    "sass": "^1.70.0",
+    "yaml": "^2.4.2",
+    "stylus": ">=0.54.8",
+    "terser": "^5.16.0",
+    "esbuild": "^0.27.0 || ^0.28.0",
+    "sugarss": "^5.0.0",
+    "@types/node": "^20.19.0 || >=22.12.0",
+    "sass-embedded": "^1.70.0",
+    "@vitejs/devtools": "^0.7.1"
+  },
+  "dist": {
+    "shasum": "ba08678ba41ba53f41c251b1772946c27b1c874e",
+    "tarball": "https://registry.npmjs.org/vite/-/vite-8.3.4.tgz",
+    "fileCount": 37,
+    "integrity": "sha512-IftLE8phJhdNRIGNEV4JCCvfNScoZQVfcXaN8TQropWGJtOHcu+iAB9pHcuGvmEb/kddw0LBe/jS8ztdC6xdiQ==",
+    "signatures": [
+      {
+        "sig": "MEUCIQCeAXB/HwdxpjsWJtL4xB1XW4EQghm8FuRmtk5k3Ok9+AIgIFJBcqIWVFWx5JeaTOpO/Noixu1/SIVjcexDfJ4S5PU=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "sig": "MEUCIQDtkEePcVc6vZxhoADsFqkp0VBbSgevSPxwgXXoG/UidQIgLb5bHn+iddppIY99rGaeeiM+n0AMTnlfU1QwNL/lwig=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "attestations": {
+      "url": "https://registry.npmjs.org/-/npm/v1/attestations/vite@8.3.4",
+      "provenance": {
+        "predicateType": "https://slsa.dev/provenance/v1"
+      }
+    },
+    "unpackedSize": 2376813
+  },
+  "repository": {
+    "url": "git+https://github.com/vitejs/vite.git",
+    "type": "git",
+    "directory": "packages/vite"
+  }
+}

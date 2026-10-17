@@ -1,0 +1,92 @@
+[
+  {
+    "repository": "Vincentwei1021/video-shotcraft",
+    "url": "https://github.com/Vincentwei1021/video-shotcraft",
+    "sha": "310330cadcf41f5d2b15ee1c908d629e26d0a324",
+    "license": "Apache-2.0 (code); third-party media separate",
+    "decision": "Reference patterns only; no upstream execution",
+    "filesRead": [
+      "LICENSE",
+      "README.md",
+      "SKILL.md",
+      "assets/audio/ATTRIBUTION.md",
+      "assets/lib/helpers/camera.tsx",
+      "assets/lib/helpers/motion.ts",
+      "assets/scripts/smoke-render-demos.py",
+      "package.json",
+      "references/final-review.md",
+      "references/music-beat-sync.md",
+      "references/pipeline.md"
+    ],
+    "notes": "Ref main; commit 2026-10-16T10:37:14Z; read-only GitHub connector collection. No API spend, installs, scripts, publication or GPU/Node24 runtime validation. See docs/audits/motion.md for limits."
+  },
+  {
+    "repository": "Liamrjohnston/remotion-motion-graphics-skill",
+    "url": "https://github.com/Liamrjohnston/remotion-motion-graphics-skill",
+    "sha": "b860c7921f2220b9e2a84e815ba0ae7b10858f08",
+    "license": "MIT",
+    "decision": "Reference patterns only; no upstream execution",
+    "filesRead": [
+      "LICENSE",
+      "README.md",
+      "install.sh",
+      "skills/cinematic-camera/SKILL.md",
+      "skills/motion-graphics/SKILL.md",
+      "skills/motion-graphics/references/visual-critic.md",
+      "skills/motion-graphics/scripts/promptible-gate.mjs"
+    ],
+    "notes": "Ref main; commit 2026-07-24T00:01:18Z; read-only GitHub connector collection. No API spend, installs, scripts, publication or GPU/Node24 runtime validation. See docs/audits/motion.md for limits."
+  },
+  {
+    "repository": "haidrrrry/claude-remotion-skill",
+    "url": "https://github.com/haidrrrry/claude-remotion-skill",
+    "sha": "1dcbe5e3fc6cf970bd10d3cc05f0a8a5d19d0383",
+    "license": "MIT",
+    "decision": "Reference patterns only; no upstream execution",
+    "filesRead": [
+      "LICENSE",
+      "README.md",
+      "examples/package.json",
+      "examples/scripts/gen-sfx.mjs",
+      "examples/scripts/gen-track.mjs",
+      "examples/src/components/Motion.tsx",
+      "remotion-motion-graphics/SKILL.md",
+      "remotion-motion-graphics/references/motion-patterns.md"
+    ],
+    "notes": "Ref main; commit 2026-08-12T21:04:57Z; read-only GitHub connector collection. No API spend, installs, scripts, publication or GPU/Node24 runtime validation. See docs/audits/motion.md for limits."
+  },
+  {
+    "repository": "remotion-dev/skills",
+    "url": "https://github.com/remotion-dev/skills",
+    "sha": "1441a11e95db35443bd76bb318386c0d3ca00053",
+    "license": "No license identified; do not assume MIT",
+    "decision": "Reference patterns only; no upstream execution",
+    "filesRead": [
+      "README.md",
+      "package.json",
+      "skills/remotion-best-practices/SKILL.md",
+      "skills/remotion-markup/audio.md",
+      "skills/remotion-markup/timing.md",
+      "skills/remotion-markup/transitions.md",
+      "skills/remotion-render/SKILL.md"
+    ],
+    "notes": "Ref main; commit 2026-10-16T08:09:16Z; read-only GitHub connector collection. No API spend, installs, scripts, publication or GPU/Node24 runtime validation. See docs/audits/motion.md for limits."
+  },
+  {
+    "repository": "remotion-dev/remotion",
+    "url": "https://github.com/remotion-dev/remotion",
+    "sha": "e653ffc05834e793070ba95a5335d4681eeb96c9",
+    "license": "Remotion License: Free License / Company License",
+    "decision": "Eligible for zero-spend individual local video/image creation under audited Free License; verify package-version license",
+    "filesRead": [
+      "LICENSE.md",
+      "README.md",
+      "package.json",
+      "packages/cli/package.json",
+      "packages/core/package.json",
+      "packages/docs/docs/gpu.mdx",
+      "packages/renderer/package.json"
+    ],
+    "notes": "Ref main; commit 2026-10-17T08:34:54Z; read-only GitHub connector collection. No API spend, installs, scripts, publication or GPU/Node24 runtime validation. See docs/audits/motion.md for limits."
+  }
+]

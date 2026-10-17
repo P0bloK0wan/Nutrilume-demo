@@ -1,0 +1,218 @@
+{
+  "repositories": [
+    {
+      "repository": "KhronosGroup/glTF-Sample-Assets",
+      "url": "https://github.com/KhronosGroup/glTF-Sample-Assets",
+      "sha": "edc7c9e67c639d230715049ee31f9a96a6babbbe",
+      "ref": "main",
+      "collectedAt": "2026-10-17T10:25:16.602597+00:00",
+      "commitDate": "2026-10-02T14:45:07Z",
+      "license": "Licença por asset; sem licença global única",
+      "decision": "Catálogo de testes; selecionar licença por modelo, não usar DamagedHelmet comercialmente.",
+      "filesRead": [
+        "README.md",
+        "Models/AnimatedMorphCube/README.md",
+        "Models/Fox/README.md",
+        "Models/FlightHelmet/README.md",
+        "Models/Box/README.md",
+        "Models/DamagedHelmet/README.md"
+      ],
+      "notes": "Verificados README legais: AnimatedMorphCube CC0; FlightHelmet CC0; Box CC-BY4.0; Fox mesh CC0, rig/animação/conversão CC-BY4.0; DamagedHelmet conversão CC-BY4.0 e origem CC-BY-NC4.0. Nenhum desses modelos foi integrado. Arquivos grandes não baixados; originais da demo evitam direitos de terceiros.",
+      "sourceBaseUrl": "https://github.com/KhronosGroup/glTF-Sample-Assets/blob/edc7c9e67c639d230715049ee31f9a96a6babbbe/"
+    },
+    {
+      "repository": "ahujasid/blender-mcp",
+      "url": "https://github.com/ahujasid/blender-mcp",
+      "sha": "7a0373ec9199183cb460068c4f96aed9c579fb4f",
+      "ref": "main",
+      "collectedAt": "2026-10-17T10:25:14.399918+00:00",
+      "commitDate": "2026-10-06T15:07:57Z",
+      "license": "MIT",
+      "decision": "Não instalar, registrar, ativar nem abrir porta; preferir Blender -b --python local.",
+      "filesRead": [
+        "addon.py",
+        "pyproject.toml",
+        "LICENSE",
+        "README.md",
+        "src/blender_mcp/__init__.py",
+        "src/blender_mcp/server.py"
+      ],
+      "notes": "Addon exec(code,{bpy:bpy}) sem sandbox; listener JSON localhost:9876 sem autenticação aparente. Server possui safe_mode opcional antes de encaminhar execução, insuficiente para proteger acesso direto ao socket. Auto-start GUI defaultTrue; headless explicitamente não inicia. Requests obrigatório no addon; SDK MCP/httpx no servidor. Telemetria, updates e integrações premium/externas excluídas do fluxo de custo zero.",
+      "sourceBaseUrl": "https://github.com/ahujasid/blender-mcp/blob/7a0373ec9199183cb460068c4f96aed9c579fb4f/"
+    },
+    {
+      "repository": "alton47/threejs-skills",
+      "url": "https://github.com/alton47/threejs-skills",
+      "sha": "7b8e25638cff83a6be4926d8f05001022cc80ac3",
+      "ref": "main",
+      "collectedAt": "2026-10-17T10:25:12.696336+00:00",
+      "commitDate": "2026-03-25T14:00:55Z",
+      "license": "MIT",
+      "decision": "Referência secundária; validar exemplos na documentação oficial e versão fixada.",
+      "filesRead": [
+        "LICENSE",
+        "README.md"
+      ],
+      "notes": "README contém14skills e exemplo vanilla com renderer/câmera/luz/material/resize. A alegação Official é autodescrição sem comprovação de vínculo. Há placeholders YOUR_USERNAME, reduzindo confiança em comandos. Não importar instruções do README nem usar sua classificação LOW como avaliação de segurança independente.",
+      "sourceBaseUrl": "https://github.com/alton47/threejs-skills/blob/7b8e25638cff83a6be4926d8f05001022cc80ac3/"
+    },
+    {
+      "repository": "blender/blender",
+      "url": "https://github.com/blender/blender",
+      "sha": "3fe0f2ab2a29df383680425df5310d0302d3492d",
+      "ref": "main",
+      "collectedAt": "2026-10-17T10:25:11.945152+00:00",
+      "commitDate": "2026-10-17T01:18:46Z",
+      "license": "GPL-3.0 (conjunto; arquivos individuais compatíveis podem diferir)",
+      "decision": "Usar CLI headless 4.3.2 já instalada; não compilar/clonar main.",
+      "filesRead": [
+        "pyproject.toml",
+        "COPYING",
+        "README.md"
+      ],
+      "notes": "README declara GPL versão 3; COPYING remete a doc/license/GPL-license.txt. Main auditado não é o binário 4.3.2; versão local evidenciada pelo artista. Sem instalação extra; scripts bpy locais revisáveis. Assets originais CC0 separados da licença da ferramenta.",
+      "sourceBaseUrl": "https://github.com/blender/blender/blob/3fe0f2ab2a29df383680425df5310d0302d3492d/"
+    },
+    {
+      "repository": "donmccurdy/glTF-Transform",
+      "url": "https://github.com/donmccurdy/glTF-Transform",
+      "sha": "8e2a94a2616d293c4b503d0fb6a4b42e6ec7c62f",
+      "ref": "main",
+      "collectedAt": "2026-10-17T10:25:13.177029+00:00",
+      "commitDate": "2026-10-16T16:09:08Z",
+      "license": "MIT",
+      "decision": "Reservar CLI local para otimização de GLB quando orçamento exigir; não instalar redundante agora.",
+      "filesRead": [
+        "LICENSE.md",
+        "README.md",
+        "package.json"
+      ],
+      "notes": "SDK core/extensions/functions e CLI; exemplos registram Draco opcional e sharp Node-only. Monorepo scripts incluem testes Deno com env/ffi/read/write/sys, limpeza recursiva e postpublish git push + deploy Vercel: não executar. Releases/pacote CLI e transitivas não inteiramente auditadas. Redução de bytes não garante redução VRAM nem fidelidade.",
+      "sourceBaseUrl": "https://github.com/donmccurdy/glTF-Transform/blob/8e2a94a2616d293c4b503d0fb6a4b42e6ec7c62f/"
+    },
+    {
+      "repository": "full-stack-skills/threejs-skills",
+      "url": "https://github.com/full-stack-skills/threejs-skills",
+      "sha": "92789c1eda17bbfade4a4274903038dcfe6cbff0",
+      "ref": "main",
+      "collectedAt": "2026-10-17T10:25:13.592643+00:00",
+      "commitDate": "2026-10-03T17:04:20Z",
+      "license": "Apache-2.0",
+      "decision": "Referência documental sob demanda; não instalar instruções remotas globalmente.",
+      "filesRead": [
+        "README.zh-CN.md",
+        "LICENSE",
+        "README.md"
+      ],
+      "notes": "README lista18skills, fontes SKILL.md vistas apenas no índice de árvore; não equivalem a APIs executadas. LICENSE verificada; README aponta THIRD-PARTY-NOTICES.md não coletado inicialmente. Instalação npx skills add é execução de ferramenta externa e não foi feita. Exemplos e links não concedem licença universal.",
+      "sourceBaseUrl": "https://github.com/full-stack-skills/threejs-skills/blob/92789c1eda17bbfade4a4274903038dcfe6cbff0/"
+    },
+    {
+      "repository": "mrdoob/three.js",
+      "url": "https://github.com/mrdoob/three.js",
+      "sha": "4885f55215787f65f68d8c45bee902c298bc0d1b",
+      "ref": "dev",
+      "collectedAt": "2026-10-17T10:25:08.920843+00:00",
+      "commitDate": "2026-10-17T09:26:02Z",
+      "license": "MIT",
+      "decision": "Adotar seletivamente para visualização web; pacote fixado e addons da mesma versão.",
+      "filesRead": [
+        "LICENSE",
+        "README.md",
+        "package.json"
+      ],
+      "notes": "package.json 0.186.0 em dev, não release validada. Sem dependências runtime declaradas; build Rollup e testes Puppeteer; dev abre servidor 8080. Não executar scripts de manutenção. Exemplos/modelos não herdam automaticamente MIT.",
+      "sourceBaseUrl": "https://github.com/mrdoob/three.js/blob/4885f55215787f65f68d8c45bee902c298bc0d1b/"
+    },
+    {
+      "repository": "pmndrs/drei",
+      "url": "https://github.com/pmndrs/drei",
+      "sha": "bf6f4addf47467d3885de272d94ca5127f6ef68f",
+      "ref": "master",
+      "collectedAt": "2026-10-17T10:25:08.692227+00:00",
+      "commitDate": "2026-09-30T16:14:27Z",
+      "license": "MIT",
+      "decision": "Selecionar helpers por necessidade; não instalar coleção integral para render offline.",
+      "filesRead": [
+        "LICENSE",
+        "README.md",
+        "package.json"
+      ],
+      "notes": "Peer deps: Fiber^9, React/DOM^19, three>=0.159. Dependências incluem three-stdlib, troika, BVH, MediaPipe, hls.js, camera-controls. prepare executa build+husky na raiz; copy remove scripts de dist. Features de câmera/vídeo/XR e loaders demandam avaliação própria de rede/permissões. Presets HDRI/fontes não são automaticamente MIT.",
+      "sourceBaseUrl": "https://github.com/pmndrs/drei/blob/bf6f4addf47467d3885de272d94ca5127f6ef68f/"
+    },
+    {
+      "repository": "pmndrs/react-postprocessing",
+      "url": "https://github.com/pmndrs/react-postprocessing",
+      "sha": "3db2d24dc343e73e5a52786ba2f0223ffc0aef1a",
+      "ref": "master",
+      "collectedAt": "2026-10-17T10:25:08.787525+00:00",
+      "commitDate": "2026-10-12T16:15:43Z",
+      "license": "MIT",
+      "decision": "Opcional para cadeia de efeitos WebGL; evitar adição sem ganho visual medido.",
+      "filesRead": [
+        "LICENSE",
+        "README.md",
+        "package.json"
+      ],
+      "notes": "Pacote3.2.0: peers Fiber>=9.7.0, React^19, three>=0.156, postprocessing^6.36.0; dependencies maath/n8ao. Build Vite+tsc, testes Vitest, sem hook de install declarado. README EffectComposer/Bloom/DoF não demonstra funcionamento com WebGPURenderer.",
+      "sourceBaseUrl": "https://github.com/pmndrs/react-postprocessing/blob/3db2d24dc343e73e5a52786ba2f0223ffc0aef1a/"
+    },
+    {
+      "repository": "pmndrs/react-three-fiber",
+      "url": "https://github.com/pmndrs/react-three-fiber",
+      "sha": "d74622ea8ed717f7212d7e19d65ff3e325508389",
+      "ref": "master",
+      "collectedAt": "2026-10-17T10:25:09.071831+00:00",
+      "commitDate": "2026-10-14T20:25:51Z",
+      "license": "MIT",
+      "decision": "Opcional para apps React; evitar segunda camada em demo vanilla.",
+      "filesRead": [
+        "LICENSE",
+        "package.json",
+        "readme.md",
+        "packages/fiber/package.json"
+      ],
+      "notes": "README: Fiber8/React18 e Fiber9/React19. Raiz de monorepo tem postinstall preconstruct + patch-react-reconciler via Vite e prepare husky; não confundir versão0.0.0 da raiz com pacote publicado. Canvas/useFrame e eventos inspecionados; claims de performance upstream não medidos aqui. Manifesto interno verificado:9.8.1; React/DOM>=19 <19.4; Three>=0.156; Expo/ReactNative opcionais.",
+      "sourceBaseUrl": "https://github.com/pmndrs/react-three-fiber/blob/d74622ea8ed717f7212d7e19d65ff3e325508389/"
+    },
+    {
+      "repository": "pmndrs/react-three-rapier",
+      "url": "https://github.com/pmndrs/react-three-rapier",
+      "sha": "ae5c3fede5ca489fd7eaa8271e9d9c5eabc88e98",
+      "ref": "main",
+      "collectedAt": "2026-10-17T10:25:08.943676+00:00",
+      "commitDate": "2025-11-03T00:38:25Z",
+      "license": "MIT",
+      "decision": "Reservar para física interativa; Blender rigid body já cobre estudo offline.",
+      "filesRead": [
+        "LICENSE",
+        "package.json",
+        "readme.md",
+        "packages/react-three-rapier/package.json",
+        "packages/react-three-rapier/readme.md"
+      ],
+      "notes": "Raiz é monorepo0.1.0; readme raiz é ponteiro para pacote. postinstall preconstruct dev; build preconstruct, testes tsc+vitest. Manifesto interno verificado:2.2.0; Rapier3d-compat0.19.2; Fiber^9.0.4/React^19/Three>=0.159; README real confirma v2/React19 e v1/React18. Sem simulação Rapier executada neste recorte.",
+      "sourceBaseUrl": "https://github.com/pmndrs/react-three-rapier/blob/ae5c3fede5ca489fd7eaa8271e9d9c5eabc88e98/"
+    },
+    {
+      "repository": "theatre-js/theatre",
+      "url": "https://github.com/theatre-js/theatre",
+      "sha": "6ea82b938ea49609489f6377ded693ccc6ee8f5b",
+      "ref": "main",
+      "collectedAt": "2026-10-17T10:25:12.512311+00:00",
+      "commitDate": "2024-04-11T09:35:04Z",
+      "license": "Apache-2.0 raiz/core; AGPL-3.0-only studio conforme manifesto",
+      "decision": "Não integrar Studio ao produto; core somente após necessidade e revisão por pacote.",
+      "filesRead": [
+        "LICENSE",
+        "README.md",
+        "package.json",
+        "packages/studio/package.json",
+        "packages/core/package.json"
+      ],
+      "notes": "core/studio0.7.0; studio package.json declara AGPL-3.0-only, core Apache-2.0. Raiz Node>=18, postinstall husky+Prisma generate em app/sync-server. README informa desenvolvimento recente em repositório privado; último commit público2024-04-11. Nenhum cloud/sync pago necessário; timeline Blender suficiente para entrega.",
+      "sourceBaseUrl": "https://github.com/theatre-js/theatre/blob/6ea82b938ea49609489f6377ded693ccc6ee8f5b/"
+    }
+  ]
+}

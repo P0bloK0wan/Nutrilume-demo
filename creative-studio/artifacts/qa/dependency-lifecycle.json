@@ -1,0 +1,188 @@
+{
+  "web": {
+    "installation": "npm install --ignore-scripts --no-audit --no-fund",
+    "lifecycleScriptsNotExecuted": [
+      {
+        "name": "lightningcss",
+        "version": "1.33.0",
+        "scripts": {
+          "prepare": "patch-package"
+        },
+        "file": "apps/web/node_modules/lightningcss/package.json"
+      }
+    ]
+  },
+  "motion": {
+    "installation": "npm install --ignore-scripts --no-audit --no-fund",
+    "lifecycleScriptsNotExecuted": [
+      {
+        "name": "entities",
+        "version": "4.5.0",
+        "scripts": {
+          "prepare": "npm run build"
+        },
+        "file": "apps/motion/node_modules/entities/package.json"
+      },
+      {
+        "name": "ast-types",
+        "version": "0.16.1",
+        "scripts": {
+          "prepare": "npm run clean && npm run build"
+        },
+        "file": "apps/motion/node_modules/ast-types/package.json"
+      },
+      {
+        "name": "acorn",
+        "version": "8.19.0",
+        "scripts": {
+          "prepare": "cd ..; npm run build:main"
+        },
+        "file": "apps/motion/node_modules/acorn/package.json"
+      },
+      {
+        "name": "stackframe",
+        "version": "1.3.4",
+        "scripts": {
+          "prepare": "cp stackframe.js dist/ && uglifyjs stackframe.js -o dist/stackframe.min.js --compress --mangle --source-map \"url=stackframe.min.js.map\""
+        },
+        "file": "apps/motion/node_modules/stackframe/package.json"
+      },
+      {
+        "name": "recast",
+        "version": "0.23.21",
+        "scripts": {
+          "prepare": "npm run build"
+        },
+        "file": "apps/motion/node_modules/recast/package.json"
+      },
+      {
+        "name": "esbuild",
+        "version": "0.28.1",
+        "scripts": {
+          "postinstall": "node install.js"
+        },
+        "file": "apps/motion/node_modules/esbuild/package.json"
+      },
+      {
+        "name": "postcss-selector-parser",
+        "version": "7.1.6",
+        "scripts": {
+          "prepare": "npm run build"
+        },
+        "file": "apps/motion/node_modules/postcss-selector-parser/package.json"
+      },
+      {
+        "name": "schema-utils",
+        "version": "4.5.0",
+        "scripts": {
+          "prepare": "husky && npm run build"
+        },
+        "file": "apps/motion/node_modules/schema-utils/package.json"
+      },
+      {
+        "name": "terser-webpack-plugin",
+        "version": "5.6.1",
+        "scripts": {
+          "prepare": "husky install && npm run build"
+        },
+        "file": "apps/motion/node_modules/terser-webpack-plugin/package.json"
+      },
+      {
+        "name": "lower-case",
+        "version": "2.0.2",
+        "scripts": {
+          "prepare": "npm run build"
+        },
+        "file": "apps/motion/node_modules/lower-case/package.json"
+      },
+      {
+        "name": "no-case",
+        "version": "3.0.4",
+        "scripts": {
+          "prepare": "npm run build"
+        },
+        "file": "apps/motion/node_modules/no-case/package.json"
+      },
+      {
+        "name": "terser",
+        "version": "5.51.2",
+        "scripts": {
+          "prepare": "npm run build"
+        },
+        "file": "apps/motion/node_modules/terser/package.json"
+      },
+      {
+        "name": "enhanced-resolve",
+        "version": "5.26.0",
+        "scripts": {
+          "prepare": "husky"
+        },
+        "file": "apps/motion/node_modules/enhanced-resolve/package.json"
+      },
+      {
+        "name": "css-loader",
+        "version": "7.1.4",
+        "scripts": {
+          "prepare": "husky && npm run build"
+        },
+        "file": "apps/motion/node_modules/css-loader/package.json"
+      },
+      {
+        "name": "style-loader",
+        "version": "4.0.0",
+        "scripts": {
+          "prepare": "husky && npm run build"
+        },
+        "file": "apps/motion/node_modules/style-loader/package.json"
+      },
+      {
+        "name": "webpack",
+        "version": "5.105.0",
+        "scripts": {
+          "prepare": "husky"
+        },
+        "file": "apps/motion/node_modules/webpack/package.json"
+      },
+      {
+        "name": "cosmiconfig",
+        "version": "8.3.6",
+        "scripts": {
+          "prepare": "husky install"
+        },
+        "file": "apps/motion/node_modules/cosmiconfig/package.json"
+      },
+      {
+        "name": "dot-case",
+        "version": "3.0.4",
+        "scripts": {
+          "prepare": "npm run build"
+        },
+        "file": "apps/motion/node_modules/dot-case/package.json"
+      },
+      {
+        "name": "error-stack-parser",
+        "version": "2.1.4",
+        "scripts": {
+          "prepare": "cp error-stack-parser.js dist/ && uglifyjs node_modules/stackframe/stackframe.js error-stack-parser.js -o dist/error-stack-parser.min.js --compress --mangle --source-map \"url=error-stack-parser.min.js.map\""
+        },
+        "file": "apps/motion/node_modules/error-stack-parser/package.json"
+      },
+      {
+        "name": "snake-case",
+        "version": "3.0.4",
+        "scripts": {
+          "prepare": "npm run build"
+        },
+        "file": "apps/motion/node_modules/snake-case/package.json"
+      },
+      {
+        "name": "@rspack/lite-tapable",
+        "version": "1.1.0",
+        "scripts": {
+          "prepare": "simple-git-hooks && npm run build"
+        },
+        "file": "apps/motion/node_modules/@rspack/lite-tapable/package.json"
+      }
+    ]
+  }
+}

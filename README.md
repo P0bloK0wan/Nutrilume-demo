@@ -17,6 +17,10 @@ O nutricionista pode preparar uma conta de paciente com e-mail e senha temporár
 
 Pacientes sem profissional podem criar conta, buscar profissionais cadastrados por cidade/distância, solicitar vínculo e pesquisar outras clínicas no Google Maps. A divulgação de endereço é voluntária. O CRN é informado pelo profissional; não é apresentado como verificado automaticamente.
 
+## Publicação no GitHub Pages
+
+A publicação pública usa `pages/index.html` e um artefato estático gerado por `node scripts/build-pages.mjs`. A plataforma Node continua na raiz deste repositório; seus dados privados não entram na publicação. [Configuração, endereço e limites](docs/PUBLICACAO.md). O estúdio completo está em [creative-studio](creative-studio/README.md), com editáveis e vídeos.
+
 ## Hospedagem
 
 **GitHub Pages não executa o servidor, o login nem o banco.** Ele permite visitar a demonstração estática e a apresentação da plataforma. Para usar contas, rode Node com volume persistente e HTTPS. Veja [OPERAÇÃO.md](docs/OPERACAO.md). Não foi contratado serviço de hospedagem nem ativada integração paga.

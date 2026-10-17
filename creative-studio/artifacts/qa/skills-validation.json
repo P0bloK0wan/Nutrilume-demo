@@ -1,0 +1,156 @@
+{
+  "scope": "operational local audit, not pre-skill RED/GREEN efficacy proof",
+  "baseline_red_run": false,
+  "skills": [
+    {
+      "skill": "blender-scene",
+      "frontmatter": "pass",
+      "markdown_links": "pass",
+      "unsafe_shell_payload_detected": false
+    },
+    {
+      "skill": "creative-brief",
+      "frontmatter": "pass",
+      "markdown_links": "pass",
+      "unsafe_shell_payload_detected": false
+    },
+    {
+      "skill": "motion-film",
+      "frontmatter": "pass",
+      "markdown_links": "pass",
+      "unsafe_shell_payload_detected": false
+    },
+    {
+      "skill": "qa-performance",
+      "frontmatter": "pass",
+      "markdown_links": "pass",
+      "unsafe_shell_payload_detected": false
+    },
+    {
+      "skill": "reference-analysis",
+      "frontmatter": "pass",
+      "markdown_links": "pass",
+      "unsafe_shell_payload_detected": false
+    },
+    {
+      "skill": "web-premium",
+      "frontmatter": "pass",
+      "markdown_links": "pass",
+      "unsafe_shell_payload_detected": false
+    }
+  ],
+  "findings_corrected": [
+    {
+      "skill": "blender-scene",
+      "failure": "description apresentava função, sem condição clara de ativação",
+      "fix": "descrição reescrita com gatilho Use when"
+    },
+    {
+      "skill": "creative-brief",
+      "failure": "description apresentava função, sem condição clara de ativação",
+      "fix": "descrição reescrita com gatilho Use when"
+    },
+    {
+      "skill": "creative-brief",
+      "failure": "delegação imperativa sem condição de autorização da sessão",
+      "fix": "delegação condicionada à autorização vigente"
+    },
+    {
+      "skill": "motion-film",
+      "failure": "description apresentava função, sem condição clara de ativação",
+      "fix": "descrição reescrita com gatilho Use when"
+    },
+    {
+      "skill": "qa-performance",
+      "failure": "description apresentava função, sem condição clara de ativação",
+      "fix": "descrição reescrita com gatilho Use when"
+    },
+    {
+      "skill": "reference-analysis",
+      "failure": "description apresentava função, sem condição clara de ativação",
+      "fix": "descrição reescrita com gatilho Use when"
+    },
+    {
+      "skill": "reference-analysis",
+      "failure": "script Python indicado sem intérprete nem argumentos obrigatórios",
+      "fix": "comando completo com placeholders e diretório de execução"
+    },
+    {
+      "skill": "web-premium",
+      "failure": "description apresentava função, sem condição clara de ativação",
+      "fix": "descrição reescrita com gatilho Use when"
+    },
+    {
+      "skill": "web-premium",
+      "failure": "duas referências obrigatórias inexistentes: docs/audits/orchestration-web.md e docs/audits/3d.md",
+      "fix": "referências existentes e exigência explícita de auditoria específica para código externo"
+    },
+    {
+      "skill": "motion-film",
+      "failure": "apps/motion não existe neste checkout",
+      "fix": "referência de processo existente; exemplo executável condicionado à existência"
+    },
+    {
+      "skill": "web-premium",
+      "failure": "apps/web não existe neste checkout",
+      "fix": "exemplo condicionado à existência; documentação existente como referência"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "blender-reopen",
+      "skills_applied": [
+        "blender-scene",
+        "qa-performance"
+      ],
+      "status": "pass",
+      "evidence": "skill-scenarios/blender-open.log",
+      "executed": "abertura real .blend, câmera/luzes/UV/modificadores/animação, Cycles96 CPU",
+      "read_only_not_executed": "novo modelo, rig novo, nova simulação, novo render pesado"
+    },
+    {
+      "id": "reference-film",
+      "skills_applied": [
+        "reference-analysis",
+        "motion-film"
+      ],
+      "status": "pass",
+      "evidence": "skill-scenarios/reference/contact-sheet.jpg",
+      "executed": "workflow local de metadata e 12 quadros, contact sheet inspecionada visualmente",
+      "observation": "dolly/orbit e elevação gradual da cúpula; sem stream de áudio; ruído de baixa amostra visível",
+      "metadata": {
+        "frames": "48",
+        "fps": "24/1",
+        "duration": "2.000000"
+      },
+      "read_only_not_executed": "composição Remotion, criação de áudio, modelo externo"
+    },
+    {
+      "id": "delivery-export",
+      "skills_applied": [
+        "qa-performance",
+        "blender-scene"
+      ],
+      "status": "pass",
+      "evidence": [
+        "skill-scenarios/glb.json",
+        "skill-scenarios/decode.log"
+      ],
+      "executed": "parser estrutural GLB e decode integral FFmpeg, comparação fonte vs export",
+      "limits": "GLB sem animação, microtextura procedural não baked; KHR_materials_anisotropy presente; validator Khronos não executado"
+    }
+  ],
+  "read_only_skills": [
+    "creative-brief",
+    "web-premium"
+  ],
+  "global_install": false,
+  "weight_changes": false,
+  "network_used": false,
+  "remaining_limits": [
+    "Nenhum teste sem skill anterior; não mede ganho causal do skill.",
+    "Creative-brief e web-premium revisados estaticamente; não aplicados end-to-end.",
+    "Sem teste adversarial fresco ou repetição estatística; escopo limitado a três cenários locais."
+  ],
+  "additional_documentation_correction": "README Blender corrigido: GLB realmente inclui KHR_materials_anisotropy; somente microtextura procedural não baked."
+}

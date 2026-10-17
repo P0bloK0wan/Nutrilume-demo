@@ -1,0 +1,55 @@
+{
+  "name": "@remotion/renderer",
+  "version": "4.0.536",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "engines": null,
+  "scripts": {
+    "lint": "eslint src",
+    "make": "tsgo -d && bun --env-file=../.env.bundle bundle.ts",
+    "test": "bun test src",
+    "watch": "tsgo -w",
+    "format": "oxfmt src",
+    "formatting": "oxfmt src --check"
+  },
+  "dependencies": {
+    "ws": "8.21.0",
+    "execa": "5.1.1",
+    "remotion": "4.0.536",
+    "source-map": "0.8.0",
+    "@remotion/licensing": "4.0.536",
+    "@remotion/streaming": "4.0.536"
+  },
+  "optionalDependencies": {
+    "@remotion/compositor-darwin-x64": "4.0.536",
+    "@remotion/compositor-darwin-arm64": "4.0.536",
+    "@remotion/compositor-linux-x64-gnu": "4.0.536",
+    "@remotion/compositor-linux-x64-musl": "4.0.536",
+    "@remotion/compositor-win32-x64-msvc": "4.0.536",
+    "@remotion/compositor-linux-arm64-gnu": "4.0.536",
+    "@remotion/compositor-linux-arm64-musl": "4.0.536"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "dist": {
+    "shasum": "535c2fe41081f2b871c61842cff4ad4a72adc041",
+    "tarball": "https://registry.npmjs.org/@remotion/renderer/-/renderer-4.0.536.tgz",
+    "fileCount": 704,
+    "integrity": "sha512-52TMRnrwMiCogTj332Zlduehxj43688p3hGkDA1TQqJwb4KeAyGdBssgmIWrqTkO+M4Z/1TqkmZ3jdL9pQ3ObA==",
+    "signatures": [
+      {
+        "sig": "MEUCIGpg0UBumIbugO7V22C/QW/tSlB9VzbCRrJfFzaGU2deAiEAjYsv34yZ4YsLqiTYtzyDhRpM0Zfx1c2fFK3FPd8/uV4=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "sig": "MEUCIQD2Ct94bVfin8veTyzM/Z1Opgq/UvQ+DrPVRojJn/26VgIgZHzAJ9gjQNzqyGtlB05MgwXWS17MmccBKmyAJBHW6bY=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "unpackedSize": 2959824
+  },
+  "repository": {
+    "url": "https://github.com/remotion-dev/remotion/tree/main/packages/renderer"
+  }
+}

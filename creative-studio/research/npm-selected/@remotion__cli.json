@@ -1,0 +1,55 @@
+{
+  "name": "@remotion/cli",
+  "version": "4.0.536",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "engines": null,
+  "scripts": {
+    "lint": "eslint src",
+    "make": "tsgo -d",
+    "test": "bun test src",
+    "format": "oxfmt src",
+    "formatting": "oxfmt src --check"
+  },
+  "dependencies": {
+    "dotenv": "17.3.1",
+    "semver": "7.5.3",
+    "prompts": "2.4.2",
+    "minimist": "1.2.6",
+    "remotion": "4.0.536",
+    "mediabunny": "1.61.3",
+    "@babel/parser": "7.24.1",
+    "@remotion/player": "4.0.536",
+    "@remotion/studio": "4.0.536",
+    "@remotion/bundler": "4.0.536",
+    "@remotion/codemods": "4.0.536",
+    "@remotion/renderer": "4.0.536",
+    "@remotion/media-utils": "4.0.536",
+    "@remotion/studio-server": "4.0.536",
+    "@remotion/studio-shared": "4.0.536"
+  },
+  "optionalDependencies": null,
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "dist": {
+    "shasum": "6c81a3e30987af241e3c6a7b4c6c9f5ef3d2bf6f",
+    "tarball": "https://registry.npmjs.org/@remotion/cli/-/cli-4.0.536.tgz",
+    "fileCount": 200,
+    "integrity": "sha512-6aUyrINnn6Feu8k4qOYCcCDmwbf/tBXZAoySRJYfQUd1oxxsODoROXpiEnx/3HHsF+XVjACEsWJihx/sYce2dA==",
+    "signatures": [
+      {
+        "sig": "MEUCIQCXedQkPhjwGnyhTnu31Hv/HSa3ECuxvWy5RaVYVB8gtwIgCHpZ7oK45JvZ0IRza7z9g+eHH6ttpRocrXLIvedwp48=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "sig": "MEUCIEgJvfXEAb7vJzQhVKExWLwIREGvkq+uT9eF4TvtRJDzAiEAnmFJrFc1skXH9uMkD2O4SPdqbejaxwTWxffjB0dZTS8=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "unpackedSize": 517821
+  },
+  "repository": {
+    "url": "https://github.com/remotion-dev/remotion/tree/main/packages/cli"
+  }
+}

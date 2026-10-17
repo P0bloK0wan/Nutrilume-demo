@@ -1,0 +1,22 @@
+{
+  "blender": "4.3.2",
+  "engine": "CYCLES",
+  "device": "CPU",
+  "samples_hero": 96,
+  "threads": 2,
+  "resolution": [
+    1280,
+    720
+  ],
+  "uv_layers_canopy": 1,
+  "modifiers_canopy": [
+    "SUBSURF",
+    "SOLIDIFY",
+    "BEVEL"
+  ],
+  "camera_bezier_points": 3,
+  "camera_displacement_saved_frame_to_48": 0.5232789276256039,
+  "canopy_animation": true,
+  "lights": 4,
+  "glb_reimport_mesh_count": 8
+}

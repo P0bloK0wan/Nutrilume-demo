@@ -1,0 +1,40 @@
+{
+  "name": "remotion",
+  "version": "4.0.536",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "engines": null,
+  "scripts": {
+    "lint": "eslint src",
+    "make": "tsgo -d && bun --env-file=../.env.bundle bundle.ts",
+    "test": "bun test src/test",
+    "format": "oxfmt src",
+    "formatting": "oxfmt src --check",
+    "prepublishOnly": "bun ensure-correct-version.ts && cp ../../README.md . && cp ../../LICENSE.md ."
+  },
+  "dependencies": null,
+  "optionalDependencies": null,
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "dist": {
+    "shasum": "1a0c4a6534f5bbc68687733764c970d39e5625ca",
+    "tarball": "https://registry.npmjs.org/remotion/-/remotion-4.0.536.tgz",
+    "fileCount": 467,
+    "integrity": "sha512-e2e1TCk7a2qmTY+ow0Tco1NMY9/m/Vss6eBfh9WkZSlLB5EyTWRnUvLKUK/wYMLHDdlvOfUJ9kqtuQyX6RCNRw==",
+    "signatures": [
+      {
+        "sig": "MEQCIEFbGglnQm8W8tIx1pa6xaMaWgFV8beT8CdsQSkPTeqJAiAUdlcoI5RkduNJJNPP8d8ZiwZZm5WjSBpBvCs1YAgzTg==",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "sig": "MEUCIQCc+PusiOujNjqO+FyT7xad0ayX5CZZDSc2msqi74fsVQIgL0glc7FSPuvythSl+AfvJrEGDIpS2ycSPdUa914I3BA=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "unpackedSize": 1915172
+  },
+  "repository": {
+    "url": "https://github.com/remotion-dev/remotion/tree/main/packages/core"
+  }
+}

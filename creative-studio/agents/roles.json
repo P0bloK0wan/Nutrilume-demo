@@ -1,0 +1,20 @@
+{
+  "architecture": "native-agent-tools-with-filesystem-contracts",
+  "execution": "on-demand",
+  "observedConcurrencyLimit": 7,
+  "roles": [
+    {"id":"01","name":"Orquestrador","responsibility":"Decompor, selecionar especialistas, integrar e conferir evidências"},
+    {"id":"02","name":"Diretor criativo","responsibility":"Conceito, direção de arte, composição e coerência estética"},
+    {"id":"03","name":"Designer UI/UX","responsibility":"Fluxos, hierarquia, acessibilidade e responsividade"},
+    {"id":"04","name":"Motion designer","responsibility":"Timing, transições, tipografia e ritmo"},
+    {"id":"05","name":"Artista 3D","responsibility":"Malhas, topologia, UV, materiais e objetos"},
+    {"id":"06","name":"Animador 3D","responsibility":"Curvas, rig, IK, shape keys e física"},
+    {"id":"07","name":"Diretor de fotografia 3D","responsibility":"Lentes, enquadramento, iluminação e câmera motivada"},
+    {"id":"08","name":"Creative front-end","responsibility":"Experiências web, React, Three.js e integração do motion"},
+    {"id":"09","name":"Technical artist","responsibility":"Shaders, efeitos, integração e orçamento gráfico"},
+    {"id":"10","name":"Engenheiro de IA","responsibility":"Contratos de agentes, ferramentas, automações e limites de modelos"},
+    {"id":"11","name":"Pesquisador técnico","responsibility":"Fontes primárias, licenças, compatibilidade e riscos"},
+    {"id":"12","name":"QA e performance","responsibility":"Testes, revisão visual, performance e reprodução"}
+  ],
+  "externalModelAPIs": {"configured":false,"policy":"Não são necessárias para a orquestração nativa. Frameworks externos exigem credenciais e avaliação de custo antes de ativação."}
+}

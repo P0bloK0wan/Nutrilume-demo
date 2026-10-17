@@ -1,0 +1,39 @@
+FAIL nonempty: README.md
+PASS nonempty: AGENTS.md
+FAIL nonempty: docs/REPORT.md
+PASS nonempty: docs/STATUS.md
+FAIL nonempty: docs/audits/3d.md
+PASS nonempty: docs/audits/motion.md
+FAIL nonempty: docs/audits/orchestration-web.md
+FAIL nonempty: docs/SKILL-VALIDATION.md
+FAIL nonempty: apps/web/dist/index.html
+FAIL nonempty: apps/web/dist/product.html
+FAIL nonempty: apps/web/package-lock.json
+FAIL nonempty: apps/motion/package-lock.json
+PASS nonempty: artifacts/blender/hero.png
+PASS nonempty: artifacts/blender/aura-object-01.blend
+PASS nonempty: artifacts/blender/aura-object-01.glb
+PASS nonempty: artifacts/blender/fundamentals-lab.blend
+FAIL gallery link: apps/web/dist/index.html
+FAIL gallery link: apps/web/README.md
+PASS gallery link: artifacts/blender/hero.png
+FAIL gallery link: apps/web/dist/product.html
+PASS gallery link: artifacts/blender/aura-object-01.glb
+FAIL gallery link: apps/motion/README.md
+FAIL gallery link: artifacts/motion/
+PASS gallery link: artifacts/blender/hero.png
+PASS gallery link: artifacts/blender/aura-film.mp4
+PASS gallery link: artifacts/blender/aura-object-01.blend
+PASS gallery link: artifacts/blender/fundamentals-lab.blend
+FAIL gallery link: README.md
+PASS gallery link: docs/ARCHITECTURE.md
+FAIL gallery link: docs/REPORT.md
+PASS gallery link: docs/COSTS-AND-LIMITS.md
+FAIL 27 source audits
+PASS Blender video exists
+PASS Blender ffprobe
+PASS Blender video duration
+PASS Blender video stream
+PASS Blender full decode
+FAIL Remotion video exists
+20/38 checks passed

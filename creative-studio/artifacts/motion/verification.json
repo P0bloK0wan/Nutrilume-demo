@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "codec_h264": true,
+    "size720p": true,
+    "fps30": true,
+    "frames300": true,
+    "duration10s": true,
+    "audio_aac48k": true
+  },
+  "passed": true,
+  "video": "/workspace/creative-studio/artifacts/motion/aura-commercial.mp4",
+  "method": "ffprobe actual exported MP4; frame extraction FFmpeg; visual review separate"
+}

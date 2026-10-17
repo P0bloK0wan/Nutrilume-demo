@@ -1,0 +1,139 @@
+{
+  "browser": "Chromium / Playwright Python",
+  "renderer": "SwiftShader software WebGL; no physical GPU claimed",
+  "completed": true,
+  "passed": true,
+  "tests": [
+    {
+      "name": "A editorial heading",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "A desktop no overflow",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "B original GLB loaded",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "WebGL actual framebuffer nonblack",
+      "passed": true,
+      "details": {
+        "pixel": [
+          67,
+          68,
+          61,
+          255
+        ],
+        "width": 1323,
+        "height": 608,
+        "renderer": "WebKit WebGL"
+      }
+    },
+    {
+      "name": "material selected",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "light updates",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "pointer orbit changes camera",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "offscreen scene paused",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "real WEBGL_lose_context supported",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "context loss explicit fallback",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "context loss shows reference",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "context fallback releases input",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "no WebGL explicit fallback",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "A mobile reduced motion content visible",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "A mobile no overflow",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "mobile accessible menu",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "reduced motion disables scroll rotation",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "touch material control",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "B mobile no overflow",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "touch drag changes camera",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "async import preserves selected material",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "async import applies actual surface color",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "late GLB cannot hide context fallback",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "zero uncaught page errors",
+      "passed": true,
+      "details": []
+    }
+  ],
+  "errors": []
+}

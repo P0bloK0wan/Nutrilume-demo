@@ -1,0 +1,48 @@
+{
+  "cpuQuota": 2.0,
+  "observedAt": "2026-10-17T02:46:10.734768+00:00",
+  "system": "Linux",
+  "cpuCount": 3,
+  "gpuDevicePresent": false,
+  "tools": {
+    "node": {
+      "available": true,
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "version": "v24.19.0"
+    },
+    "npm": {
+      "available": true,
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/npm",
+      "version": "11.9.0"
+    },
+    "python3": {
+      "available": true,
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "version": "Python 3.12.14"
+    },
+    "blender": {
+      "available": true,
+      "path": "/usr/bin/blender",
+      "version": "Blender 4.3.2"
+    },
+    "ffmpeg": {
+      "available": true,
+      "path": "/usr/bin/ffmpeg",
+      "version": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers"
+    },
+    "ffprobe": {
+      "available": true,
+      "path": "/usr/bin/ffprobe",
+      "version": "ffprobe version 7.1.5-0+deb13u1 Copyright (c) 2007-2026 the FFmpeg developers"
+    },
+    "git": {
+      "available": true,
+      "path": "/usr/local/bin/git",
+      "version": "git version 2.52.0"
+    }
+  },
+  "notes": [
+    "Presença de dispositivo não prova aceleração WebGL/WebGPU; testar o renderer.",
+    "Frameworks externos de LLM não são necessários para os agentes nativos desta sessão."
+  ]
+}

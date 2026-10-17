@@ -1,0 +1,223 @@
+{
+  "expected": 27,
+  "documented": 27,
+  "missing": [],
+  "repositories": [
+    {
+      "repository": "obra/superpowers",
+      "fieldsMissing": [],
+      "sha": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "decision": "usar procedimentos; não instalar plugin duplicado",
+      "sourceFilesRead": 7,
+      "provenancePresent": true
+    },
+    {
+      "repository": "bmad-code-org/BMAD-METHOD",
+      "fieldsMissing": [],
+      "sha": "cfba3ff5f982c1809e060606e399f55ebd7bce5e",
+      "decision": "consultar; não instalar",
+      "sourceFilesRead": 7,
+      "provenancePresent": true
+    },
+    {
+      "repository": "openai/openai-agents-js",
+      "fieldsMissing": [],
+      "sha": "9687b544c8c873080e6ff7e7d294c0b353cd9ab6",
+      "decision": "consultar; não instalar framework",
+      "sourceFilesRead": 8,
+      "provenancePresent": true
+    },
+    {
+      "repository": "crewAIInc/crewAI",
+      "fieldsMissing": [],
+      "sha": "40bb2d3b586e8367d206090cc62df5242206008f",
+      "decision": "consultar; não instalar framework",
+      "sourceFilesRead": 5,
+      "provenancePresent": true
+    },
+    {
+      "repository": "langchain-ai/deepagents",
+      "fieldsMissing": [],
+      "sha": "0c99fd026c4c41a08e6725a5e45d5ac111dcc6bb",
+      "decision": "consultar; não instalar framework",
+      "sourceFilesRead": 4,
+      "provenancePresent": true
+    },
+    {
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "fieldsMissing": [],
+      "sha": "56ea9cf174ed86786187daa9de0e6247cb0747e4",
+      "decision": "consultar e adaptar padrões locais; não instalar CLI global",
+      "sourceFilesRead": 6,
+      "provenancePresent": true
+    },
+    {
+      "repository": "DavidHDev/react-bits",
+      "fieldsMissing": [],
+      "sha": "310fc737fadcaa149a4e06fb088fc95332dc8bfb",
+      "decision": "consultar; uso em aplicação condicionado à licença; não redistribuir biblioteca",
+      "sourceFilesRead": 5,
+      "provenancePresent": true
+    },
+    {
+      "repository": "magicuidesign/magicui",
+      "fieldsMissing": [],
+      "sha": "efe76fc5755eca1142dd4f74c1d6f0ace2887e3c",
+      "decision": "usar seletivamente como referência/componentes; não instalar monorepo",
+      "sourceFilesRead": 6,
+      "provenancePresent": true
+    },
+    {
+      "repository": "ibelick/motion-primitives",
+      "fieldsMissing": [],
+      "sha": "120f64f6ca60348e251f929e9c81f11ccbe45eda",
+      "decision": "usar seletivamente como referência/componentes; não instalar site",
+      "sourceFilesRead": 6,
+      "provenancePresent": true
+    },
+    {
+      "repository": "greensock/GSAP",
+      "fieldsMissing": [],
+      "sha": "13e2b790546426a1a2e0e9b409f3f8dc6d6611f2",
+      "decision": "usar como motor de timeline/scroll no projeto; sem instalação nesta auditoria",
+      "sourceFilesRead": 4,
+      "provenancePresent": true
+    },
+    {
+      "repository": "Vincentwei1021/video-shotcraft",
+      "fieldsMissing": [],
+      "sha": "310330cadcf41f5d2b15ee1c908d629e26d0a324",
+      "decision": "Reference patterns only; no upstream execution",
+      "sourceFilesRead": 11,
+      "provenancePresent": true
+    },
+    {
+      "repository": "Liamrjohnston/remotion-motion-graphics-skill",
+      "fieldsMissing": [],
+      "sha": "b860c7921f2220b9e2a84e815ba0ae7b10858f08",
+      "decision": "Reference patterns only; no upstream execution",
+      "sourceFilesRead": 7,
+      "provenancePresent": true
+    },
+    {
+      "repository": "haidrrrry/claude-remotion-skill",
+      "fieldsMissing": [],
+      "sha": "1dcbe5e3fc6cf970bd10d3cc05f0a8a5d19d0383",
+      "decision": "Reference patterns only; no upstream execution",
+      "sourceFilesRead": 8,
+      "provenancePresent": true
+    },
+    {
+      "repository": "remotion-dev/skills",
+      "fieldsMissing": [],
+      "sha": "1441a11e95db35443bd76bb318386c0d3ca00053",
+      "decision": "Reference patterns only; no upstream execution",
+      "sourceFilesRead": 7,
+      "provenancePresent": true
+    },
+    {
+      "repository": "remotion-dev/remotion",
+      "fieldsMissing": [],
+      "sha": "e653ffc05834e793070ba95a5335d4681eeb96c9",
+      "decision": "Eligible for zero-spend individual local video/image creation under audited Free License; verify package-version license",
+      "sourceFilesRead": 7,
+      "provenancePresent": true
+    },
+    {
+      "repository": "blender/blender",
+      "fieldsMissing": [],
+      "sha": "3fe0f2ab2a29df383680425df5310d0302d3492d",
+      "decision": "Usar CLI headless 4.3.2 já instalada; não compilar/clonar main.",
+      "sourceFilesRead": 3,
+      "provenancePresent": true
+    },
+    {
+      "repository": "mrdoob/three.js",
+      "fieldsMissing": [],
+      "sha": "4885f55215787f65f68d8c45bee902c298bc0d1b",
+      "decision": "Adotar seletivamente para visualização web; pacote fixado e addons da mesma versão.",
+      "sourceFilesRead": 3,
+      "provenancePresent": true
+    },
+    {
+      "repository": "pmndrs/react-three-fiber",
+      "fieldsMissing": [],
+      "sha": "d74622ea8ed717f7212d7e19d65ff3e325508389",
+      "decision": "Opcional para apps React; evitar segunda camada em demo vanilla.",
+      "sourceFilesRead": 4,
+      "provenancePresent": true
+    },
+    {
+      "repository": "pmndrs/drei",
+      "fieldsMissing": [],
+      "sha": "bf6f4addf47467d3885de272d94ca5127f6ef68f",
+      "decision": "Selecionar helpers por necessidade; não instalar coleção integral para render offline.",
+      "sourceFilesRead": 3,
+      "provenancePresent": true
+    },
+    {
+      "repository": "pmndrs/react-three-rapier",
+      "fieldsMissing": [],
+      "sha": "ae5c3fede5ca489fd7eaa8271e9d9c5eabc88e98",
+      "decision": "Reservar para física interativa; Blender rigid body já cobre estudo offline.",
+      "sourceFilesRead": 5,
+      "provenancePresent": true
+    },
+    {
+      "repository": "pmndrs/react-postprocessing",
+      "fieldsMissing": [],
+      "sha": "3db2d24dc343e73e5a52786ba2f0223ffc0aef1a",
+      "decision": "Opcional para cadeia de efeitos WebGL; evitar adição sem ganho visual medido.",
+      "sourceFilesRead": 3,
+      "provenancePresent": true
+    },
+    {
+      "repository": "theatre-js/theatre",
+      "fieldsMissing": [],
+      "sha": "6ea82b938ea49609489f6377ded693ccc6ee8f5b",
+      "decision": "Não integrar Studio ao produto; core somente após necessidade e revisão por pacote.",
+      "sourceFilesRead": 5,
+      "provenancePresent": true
+    },
+    {
+      "repository": "full-stack-skills/threejs-skills",
+      "fieldsMissing": [],
+      "sha": "92789c1eda17bbfade4a4274903038dcfe6cbff0",
+      "decision": "Referência documental sob demanda; não instalar instruções remotas globalmente.",
+      "sourceFilesRead": 3,
+      "provenancePresent": true
+    },
+    {
+      "repository": "alton47/threejs-skills",
+      "fieldsMissing": [],
+      "sha": "7b8e25638cff83a6be4926d8f05001022cc80ac3",
+      "decision": "Referência secundária; validar exemplos na documentação oficial e versão fixada.",
+      "sourceFilesRead": 2,
+      "provenancePresent": true
+    },
+    {
+      "repository": "ahujasid/blender-mcp",
+      "fieldsMissing": [],
+      "sha": "7a0373ec9199183cb460068c4f96aed9c579fb4f",
+      "decision": "Não instalar, registrar, ativar nem abrir porta; preferir Blender -b --python local.",
+      "sourceFilesRead": 6,
+      "provenancePresent": true
+    },
+    {
+      "repository": "donmccurdy/glTF-Transform",
+      "fieldsMissing": [],
+      "sha": "8e2a94a2616d293c4b503d0fb6a4b42e6ec7c62f",
+      "decision": "Reservar CLI local para otimização de GLB quando orçamento exigir; não instalar redundante agora.",
+      "sourceFilesRead": 3,
+      "provenancePresent": true
+    },
+    {
+      "repository": "KhronosGroup/glTF-Sample-Assets",
+      "fieldsMissing": [],
+      "sha": "edc7c9e67c639d230715049ee31f9a96a6babbbe",
+      "decision": "Catálogo de testes; selecionar licença por modelo, não usar DamagedHelmet comercialmente.",
+      "sourceFilesRead": 6,
+      "provenancePresent": true
+    }
+  ]
+}
